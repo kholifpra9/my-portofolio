@@ -137,7 +137,28 @@ setTimeout(typeLoop, 1200);
 // ─── HERO LETTER SPLIT (hover per-letter) ───
 const heroName = document.querySelector('.hero-name');
 if (heroName) {
-  heroName.innerHTML = heroName.innerHTML.replace(/([A-Za-z])/g, '<span class="letter">$1</span>');
+  // Gunakan TreeWalker agar hanya text node yang dipecah,
+  // bukan karakter di dalam tag HTML (mencegah tag rusak)
+  const walker = document.createTreeWalker(heroName, NodeFilter.SHOW_TEXT, null, false);
+  const textNodes = [];
+  let node;
+  while ((node = walker.nextNode())) textNodes.push(node);
+
+  textNodes.forEach(textNode => {
+    const frag = document.createDocumentFragment();
+    [...textNode.textContent].forEach(char => {
+      if (/[A-Za-z]/.test(char)) {
+        const span = document.createElement('span');
+        span.className = 'letter';
+        span.textContent = char;
+        frag.appendChild(span);
+      } else {
+        frag.appendChild(document.createTextNode(char));
+      }
+    });
+    textNode.parentNode.replaceChild(frag, textNode);
+  });
+
   document.querySelectorAll('.letter').forEach(l => {
     l.addEventListener('mouseenter', () => {
       l.style.color = 'var(--accent)';
