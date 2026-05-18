@@ -173,6 +173,159 @@ if (heroName) {
   });
 }
 
+// ─── SKILLS PHYSICS BALLS (Matter.js) ───
+const skillsCanvas = document.getElementById('skillsCanvas');
+if (skillsCanvas && typeof Matter !== 'undefined') {
+  const { Engine, Render, Runner, Bodies, Body, Events, Mouse, MouseConstraint, World, Vector } = Matter;
+
+  const wrap = skillsCanvas.parentElement;
+  const W = wrap.offsetWidth;
+  const H = wrap.offsetHeight;
+  skillsCanvas.width = W;
+  skillsCanvas.height = H;
+
+  const SKILLS = [
+    { label: 'PHP',        color: '#7b7fb5', emoji: '🐘', img: 'assets/images/icons/php.png' },
+    { label: 'TypeScript', color: '#3178c6', emoji: '📘', img: 'assets/images/icons/ts.png' },
+    { label: 'JavaScript', color: '#f0db4f', emoji: '🟨', img: 'assets/images/icons/js.png' },
+    { label: 'Dart',       color: '#00b4ab', emoji: '🎯', img: 'assets/images/icons/dart.png' },
+    { label: 'Laravel',    color: '#ff2d20', emoji: '🔥', img: 'assets/images/icons/laravel.svg.png' },
+    { label: 'Node.js',    color: '#68a063', emoji: '🟢', img: 'assets/images/icons/nodejs.png' },
+    { label: 'Bun.js',     color: '#fbf0df', emoji: '🧡', img: 'assets/images/icons/bunjs.png' },
+    { label: 'React',      color: '#61dafb', emoji: '⚛️', img: 'assets/images/icons/react.png' },
+    { label: 'Flutter',    color: '#54c5f8', emoji: '💙', img: 'assets/images/icons/flutter.png' },
+    { label: 'MySQL',      color: '#00758f', emoji: '🗄️', img: 'assets/images/icons/mysql.png' },
+    { label: 'Tailwind',   color: '#38bdf8', emoji: '🌊', img: 'assets/images/icons/tailwind.png' },
+    { label: 'Git',        color: '#f05032', emoji: '🔀', img: 'assets/images/icons/git.png' },
+    { label: 'Figma',      color: '#a259ff', emoji: '🎨', img: 'assets/images/icons/figma.png' },
+    { label: 'Groq AI',    color: '#00ff88', emoji: '🤖', img: 'assets/images/icons/groqai.webp' },
+    { label: 'Midtrans',   color: '#003d79', emoji: '💳', img: 'assets/images/icons/midtrans.png' },
+  ];
+
+  const imgCache = {};
+  let loaded = 0;
+  SKILLS.forEach(s => {
+    const image = new Image();
+    image.src = s.img;
+    image.onload = () => { imgCache[s.label] = image; };
+    image.onerror = () => { imgCache[s.label] = null; }; // fallback ke emoji
+  });
+
+  const engine = Engine.create({ gravity: { x: 0, y: 0 } }); // zero gravity = space
+  const world = engine.world;
+
+  const R = Math.min(W, H) * 0.072;
+  const WALL = 60;
+
+  // Invisible boundary walls (thick so balls never escape)
+  const walls = [
+    Bodies.rectangle(W/2, -WALL/2, W + WALL*2, WALL, { isStatic: true }),
+    Bodies.rectangle(W/2, H+WALL/2, W + WALL*2, WALL, { isStatic: true }),
+    Bodies.rectangle(-WALL/2, H/2, WALL, H + WALL*2, { isStatic: true }),
+    Bodies.rectangle(W+WALL/2, H/2, WALL, H + WALL*2, { isStatic: true }),
+  ];
+  World.add(world, walls);
+
+  // Create balls
+  const balls = SKILLS.map((s, i) => {
+    const cols = Math.ceil(Math.sqrt(SKILLS.length));
+    const col = i % cols, row = Math.floor(i / cols);
+    const x = R * 2 + col * ((W - R*4) / (cols - 1));
+    const y = R * 2 + row * ((H - R*4) / Math.ceil(SKILLS.length / cols));
+    const ball = Bodies.circle(x, y, R, {
+      restitution: 0.92,   // bouncy but not gaining energy
+      friction: 0,
+      frictionAir: 0.008,  // tiny air drag = space feel
+      frictionStatic: 0,
+      label: s.label,
+    });
+    // small random initial velocity
+    Body.setVelocity(ball, {
+      x: (Math.random() - 0.5) * 1.2,
+      y: (Math.random() - 0.5) * 1.2,
+    });
+    ball.meta = s;
+    return ball;
+  });
+  World.add(world, balls);
+
+  // Mouse constraint for drag
+  const mouse = Mouse.create(skillsCanvas);
+  mouse.pixelRatio = window.devicePixelRatio || 1;
+  const mc = MouseConstraint.create(engine, {
+    mouse,
+    constraint: { stiffness: 0.08, damping: 0.1, render: { visible: false } }
+  });
+  World.add(world, mc);
+
+  // Click smash — push nearby balls away from click point
+  skillsCanvas.addEventListener('click', e => {
+    if (mc.body) return; // was dragging
+    const rect = skillsCanvas.getBoundingClientRect();
+    const cx = (e.clientX - rect.left) * (W / rect.width);
+    const cy = (e.clientY - rect.top) * (H / rect.height);
+    balls.forEach(b => {
+      const dx = b.position.x - cx;
+      const dy = b.position.y - cy;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if (dist < R * 4 && dist > 0) {
+        const force = (R * 4 - dist) / (R * 4) * 0.018;
+        Body.applyForce(b, b.position, { x: (dx/dist)*force, y: (dy/dist)*force });
+      }
+    });
+  });
+
+  // Custom canvas renderer
+  const sc = skillsCanvas.getContext('2d');
+
+  function drawScene() {
+    sc.clearRect(0, 0, W, H);
+    balls.forEach(b => {
+      const { x, y } = b.position;
+      const s = b.meta;
+
+      // Glow ring
+      const grd = sc.createRadialGradient(x - R*0.3, y - R*0.3, R*0.05, x, y, R);
+      grd.addColorStop(0, s.color + 'dd');
+      grd.addColorStop(0.6, s.color + '55');
+      grd.addColorStop(1, s.color + '11');
+      sc.beginPath();
+      sc.arc(x, y, R, 0, Math.PI*2);
+      sc.fillStyle = grd;
+      sc.fill();
+
+      // Border
+      sc.beginPath();
+      sc.arc(x, y, R, 0, Math.PI*2);
+      sc.strokeStyle = s.color + 'bb';
+      sc.lineWidth = 1.5;
+      sc.stroke();
+
+      // Emoji
+      const icon = imgCache[s.label];
+      if (icon) {
+        const size = R * 1.1;
+        sc.drawImage(icon, x - size/2, y - size/2 - R*0.1, size, size);
+      } else {
+        sc.font = `${R * 0.65}px serif`;
+        sc.textAlign = 'center';
+        sc.textBaseline = 'middle';
+        sc.fillStyle = '#fff';
+        sc.fillText(s.emoji, x, y - R * 0.15);
+      }
+
+      // Label
+      sc.font = `bold ${R * 0.27}px 'Space Mono', monospace`;
+      sc.fillStyle = '#ffffffcc';
+      sc.fillText(s.label, x, y + R * 0.58);
+    });
+  }
+
+  const runner = Runner.create();
+  Runner.run(runner, engine);
+  Events.on(engine, 'afterUpdate', drawScene);
+}
+
 // ─── MOUSE PARALLAX (hero elements) ───
 const home = document.getElementById('home');
 if (home) {
