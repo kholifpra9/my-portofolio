@@ -10,6 +10,7 @@
 </head>
 <body>
 
+<canvas id="particles" style="position:fixed;top:0;left:0;z-index:0;pointer-events:none;"></canvas>
 <div id="cursor"></div>
 <div id="cursor-ring"></div>
 
@@ -41,7 +42,7 @@
 
 <!-- HERO -->
 <section id="home">
-  <p class="hero-tag">// Full-Stack Engineer · AI-Integrated Systems</p>
+  <p class="hero-tag">// <span id="typing-text">Full-Stack Engineer</span><span class="t-cursor" style="margin-left:2px;width:6px;height:0.9em;vertical-align:middle;display:inline-block;background:var(--accent);animation:blink 1s step-end infinite;"></span></p>
   <h1 class="hero-name">
     Kholif<br>
     <span class="line2">Prasetyo</span><br>
@@ -92,10 +93,10 @@
     </div>
   </div>
   <div class="about-stats reveal">
-    <div class="stat"><div class="stat-num">5</div><div class="stat-label">production tools shipped</div></div>
-    <div class="stat"><div class="stat-num">5K+</div><div class="stat-label">waybills tracked / session</div></div>
-    <div class="stat"><div class="stat-num">3.70</div><div class="stat-label">GPA / 4.00</div></div>
-    <div class="stat"><div class="stat-num">570</div><div class="stat-label">TOEFL ITP score</div></div>
+    <div class="stat"><div class="stat-num" data-target="5" data-suffix="">5</div><div class="stat-label">production tools shipped</div></div>
+    <div class="stat"><div class="stat-num" data-target="5000" data-suffix="+">5K+</div><div class="stat-label">waybills tracked / session</div></div>
+    <div class="stat"><div class="stat-num" data-target="3.70" data-suffix="">3.70</div><div class="stat-label">GPA / 4.00</div></div>
+    <div class="stat"><div class="stat-num" data-target="570" data-suffix="">570</div><div class="stat-label">TOEFL ITP score</div></div>
   </div>
 </section>
 

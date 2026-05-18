@@ -151,6 +151,22 @@ footer span { color: var(--accent); }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes fadeLeft { from { opacity: 0; transform: translate(24px, -40%); } to { opacity: 1; transform: translate(0, -40%); } }
 @keyframes blink { 50% { opacity: 0; } }
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+/* Per-letter hover */
+.letter { display: inline-block; transition: color 0.2s, transform 0.3s cubic-bezier(.34,1.56,.64,1), text-shadow 0.3s; cursor: default; }
+
+/* Hero name idle float — staggered per child */
+.hero-name { transition: transform 0.15s ease; }
+
+/* Terminal draggable hint */
+.terminal-bar::after { content: '⠿ drag'; font-family: var(--mono); font-size: 0.55rem; color: var(--border); margin-left: 0.5rem; letter-spacing: 0.05em; }
+
+/* Project card 3D */
+.project-card { transition: transform 0.15s ease, background 0.25s; transform-style: preserve-3d; will-change: transform; }
 
 .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
