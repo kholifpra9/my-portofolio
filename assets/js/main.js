@@ -1,3 +1,21 @@
+// Hamburger menu
+const hamburger = document.getElementById('hamburger');
+const drawer = document.getElementById('drawer');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  drawer.classList.toggle('open');
+  document.body.style.overflow = drawer.classList.contains('open') ? 'hidden' : '';
+});
+
+document.querySelectorAll('.drawer-link').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('open');
+    drawer.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+
 // Custom cursor
 const cursor = document.getElementById('cursor');
 const ring = document.getElementById('cursor-ring');
