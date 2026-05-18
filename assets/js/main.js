@@ -323,6 +323,32 @@ if (skillsCanvas && typeof Matter !== 'undefined') {
 
   const runner = Runner.create();
   Runner.run(runner, engine);
+  setInterval(() => {
+    balls.forEach(b => {
+      const v = b.speed;
+      if (v < 0.3) {
+        Body.applyForce(b, b.position, {
+          x: (Math.random() - 0.5) * 0.0022,
+          y: (Math.random() - 0.5) * 0.0022,
+        });
+      }
+    });
+  }, 200);
+  // Scroll gravity — bola ikut arah scroll
+  let lastScrollY = window.scrollY;
+  window.addEventListener('scroll', () => {
+    const delta = window.scrollY - lastScrollY;
+    lastScrollY = window.scrollY;
+
+    const forceY = Math.max(Math.min(delta * 0.00012, 0.003), -0.003);
+
+    balls.forEach(b => {
+      Body.applyForce(b, b.position, {
+        x: (Math.random() - 0.5) * Math.abs(forceY) * 0.3,
+        y: forceY,
+      });
+    });
+  });
   Events.on(engine, 'afterUpdate', drawScene);
 }
 
