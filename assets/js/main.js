@@ -185,7 +185,7 @@ if (skillsCanvas && typeof Matter !== 'undefined') {
   skillsCanvas.height = H;
 
   const SKILLS = [
-    { label: 'PHP',        color: '#7b7fb5', emoji: '🐘', img: 'assets/images/icons/php.svg.png' },
+    { label: 'PHP',        color: '#7b7fb5', emoji: '🐘', img: 'assets/images/icons/php.png' },
     { label: 'TypeScript', color: '#3178c6', emoji: '📘', img: 'assets/images/icons/ts.png' },
     { label: 'JavaScript', color: '#f0db4f', emoji: '🟨', img: 'assets/images/icons/js.png' },
     { label: 'Dart',       color: '#00b4ab', emoji: '🎯', img: 'assets/images/icons/dart.png' },
