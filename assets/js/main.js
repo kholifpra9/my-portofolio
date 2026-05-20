@@ -476,11 +476,23 @@ const observer = new IntersectionObserver(entries => {
 reveals.forEach(el => observer.observe(el));
 
 // ─── ACTIVE NAV ON SCROLL ───
+// Smooth scroll via data-target (URL tetap clean)
+document.querySelectorAll('[data-target]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.getElementById(a.dataset.target);
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+// Active nav on scroll
 const sections = document.querySelectorAll('section');
 const navLinks = document.querySelectorAll('.nav-links a');
 
 window.addEventListener('scroll', () => {
   let current = '';
   sections.forEach(s => { if (window.scrollY >= s.offsetTop - 200) current = s.id; });
-  navLinks.forEach(a => { a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent)' : ''; });
+  navLinks.forEach(a => {
+    a.style.color = a.dataset.target === current ? 'var(--accent)' : '';
+  });
 });
