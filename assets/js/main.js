@@ -189,7 +189,7 @@ if (skillsCanvas && typeof Matter !== 'undefined') {
     { label: 'TypeScript', color: '#3178c6', emoji: '📘', img: 'assets/images/icons/ts.png' },
     { label: 'JavaScript', color: '#f0db4f', emoji: '🟨', img: 'assets/images/icons/js.png' },
     { label: 'Dart',       color: '#00b4ab', emoji: '🎯', img: 'assets/images/icons/dart.png' },
-    { label: 'Laravel',    color: '#ff2d20', emoji: '🔥', img: 'assets/images/icons/laravel.svg.png' },
+    { label: 'Laravel',    color: '#ff2d20', emoji: '🔥', img: 'assets/images/icons/Laravel.svg.png' },
     { label: 'Node.js',    color: '#68a063', emoji: '🟢', img: 'assets/images/icons/nodejs.png' },
     { label: 'Bun.js',     color: '#fbf0df', emoji: '🧡', img: 'assets/images/icons/bunjs.png' },
     { label: 'React',      color: '#61dafb', emoji: '⚛️', img: 'assets/images/icons/react.png' },
@@ -199,7 +199,7 @@ if (skillsCanvas && typeof Matter !== 'undefined') {
     { label: 'Git',        color: '#f05032', emoji: '🔀', img: 'assets/images/icons/git.png' },
     { label: 'Figma',      color: '#a259ff', emoji: '🎨', img: 'assets/images/icons/figma.png' },
     { label: 'Groq AI',    color: '#00ff88', emoji: '🤖', img: 'assets/images/icons/groqai.webp' },
-    { label: 'Midtrans',   color: '#003d79', emoji: '💳', img: 'assets/images/icons/midtrans.png' },
+    { label: 'Midtrans',   color: '#003d79', emoji: '💳', img: 'assets/images/icons/Midtrans.png' },
   ];
 
   const imgCache = {};
