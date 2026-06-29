@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kholif Prasetyo — Full-Stack Engineer</title>
+  <title>Kholif Prasetyo | Full-Stack Engineer</title>
   <link rel="icon" type="image/png" href="assets/images/logo.png" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="assets/css/style.css" />
@@ -18,12 +18,12 @@
 <nav>
   <div class="nav-logo"><span>~/</span>kholif<span>.dev</span></div>
   <ul class="nav-links">
-    <li><a href="#home">home</a></li>
-    <li><a href="#about">about</a></li>
-    <li><a href="#skills">skills</a></li>
-    <li><a href="#experience">experience</a></li>
-    <li><a href="#projects">projects</a></li>
-    <li><a href="#contact">contact</a></li>
+    <li><a href="#" data-target="home">home</a></li>
+    <li><a href="#" data-target="about">about</a></li>
+    <li><a href="#" data-target="skills">skills</a></li>
+    <li><a href="#" data-target="experience">experience</a></li>
+    <li><a href="#" data-target="projects">projects</a></li>
+    <li><a href="#" data-target="contact">contact</a></li>
   </ul>
   <button class="hamburger" id="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -32,12 +32,12 @@
 
 <!-- MOBILE DRAWER -->
 <div class="nav-drawer" id="drawer">
-  <a href="#home" class="drawer-link">home</a>
-  <a href="#about" class="drawer-link">about</a>
-  <a href="#skills" class="drawer-link">skills</a>
-  <a href="#experience" class="drawer-link">experience</a>
-  <a href="#projects" class="drawer-link">projects</a>
-  <a href="#contact" class="drawer-link">contact</a>
+  <a href="#" data-target="home" class="drawer-link">home</a>
+  <a href="#" data-target="about" class="drawer-link">about</a>
+  <a href="#" data-target="skills" class="drawer-link">skills</a>
+  <a href="#" data-target="experience" class="drawer-link">experience</a>
+  <a href="#" data-target="projects" class="drawer-link">projects</a>
+  <a href="#" data-target="contact" class="drawer-link">contact</a>
 </div>
 
 <!-- HERO -->
@@ -67,7 +67,7 @@
     <div class="terminal-body">
       <div><span class="t-prompt">❯ </span><span class="t-cmd">cat profile.json</span></div>
       <div><span class="t-out">{</span></div>
-      <div>&nbsp;&nbsp;<span class="t-key">name</span><span class="t-out">: </span><span class="t-str">"Kholif Prasetyo"</span><span class="t-out">,</span></div>
+      <div>&nbsp;&nbsp;<span class="t-key">name</span><span class="t-out">: </span><span class="t-str">"Kholif Prasetyo Aditya Hidayat"</span><span class="t-out">,</span></div>
       <div>&nbsp;&nbsp;<span class="t-key">role</span><span class="t-out">: </span><span class="t-str">"Full-Stack Engineer"</span><span class="t-out">,</span></div>
       <div>&nbsp;&nbsp;<span class="t-key">stack</span><span class="t-out">: [</span><span class="t-str">"Laravel"</span><span class="t-out">, </span><span class="t-str">"React"</span><span class="t-out">, </span><span class="t-str">"Node.js"</span><span class="t-out">, </span><span class="t-str">"Flutter"</span><span class="t-out">],</span></div>
       <div>&nbsp;&nbsp;<span class="t-key">tools</span><span class="t-out">: [</span><span class="t-str">"AI APIs"</span><span class="t-out">, </span><span class="t-str">"ETL"</span><span class="t-out">, </span><span class="t-str">"BigQuery"</span><span class="t-out">],</span></div>
@@ -92,53 +92,19 @@
       <p>I studied Informatics Engineering at Universitas Suryakancana and presented at <strong>Seminar Nasional Teknik UNSUR 2025</strong> on AI innovation.</p>
     </div>
   </div>
-    <div class="about-stats reveal">
-      <div class="stat"><div class="stat-num" data-target="5" data-suffix="">5</div><div class="stat-label">production tools shipped</div></div>
-      <div class="stat"><div class="stat-num" data-target="5000" data-suffix="+">5K+</div><div class="stat-label">waybills tracked / session</div></div>
-    </div>
+  <div class="about-stats reveal">
+    <div class="stat"><div class="stat-num" data-target="5" data-suffix="">5</div><div class="stat-label">production tools shipped</div></div>
+    <div class="stat"><div class="stat-num" data-target="5000" data-suffix="+">5K+</div><div class="stat-label">waybills tracked / session</div></div>
+  </div>
 </section>
 
 <!-- SKILLS -->
 <section id="skills">
   <p class="section-label reveal">02 // skills</p>
   <h2 class="section-title reveal">Tech Stack.</h2>
-  <div class="skills-grid reveal">
-    <div class="skill-group">
-      <div class="skill-group-label">Languages</div>
-      <div class="skill-tags">
-        <span class="tag">PHP</span><span class="tag">TypeScript</span><span class="tag">JavaScript</span><span class="tag">Dart</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-label">Backend</div>
-      <div class="skill-tags">
-        <span class="tag">Laravel</span><span class="tag">Node.js</span><span class="tag">Bun.js</span><span class="tag">REST API</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-label">Frontend</div>
-      <div class="skill-tags">
-        <span class="tag">React.js</span><span class="tag">Bootstrap</span><span class="tag">Tailwind</span><span class="tag">Figma</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-label">Mobile</div>
-      <div class="skill-tags"><span class="tag">Flutter</span></div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-label">Data & AI</div>
-      <div class="skill-tags">
-        <span class="tag">BigQuery</span><span class="tag">MySQL</span><span class="tag">ETL Pipeline</span>
-        <span class="tag">Web Scraping</span><span class="tag">Groq AI API</span><span class="tag">Prompt Engineering</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-label">Integrations & Tools</div>
-      <div class="skill-tags">
-        <span class="tag">TikTok Business API</span><span class="tag">Midtrans</span>
-        <span class="tag">Git</span><span class="tag">Postman</span><span class="tag">Ngrok</span>
-      </div>
-    </div>
+  <div class="skills-canvas-wrap">
+    <canvas id="skillsCanvas"></canvas>
+    <p class="skills-hint">// drag & smash the balls</p>
   </div>
 </section>
 
@@ -261,6 +227,7 @@
   <p>Full-Stack Engineer <span>·</span> AI-Integrated Systems</p>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>
