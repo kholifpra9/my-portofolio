@@ -87,7 +87,6 @@ class Particle {
 
 for (let i = 0; i < 80; i++) particles.push(new Particle());
 
-// draw connecting lines between close particles
 function drawLines() {
   for (let i = 0; i < particles.length; i++) {
     for (let j = i + 1; j < particles.length; j++) {
@@ -137,8 +136,6 @@ setTimeout(typeLoop, 1200);
 // ─── HERO LETTER SPLIT (hover per-letter) ───
 const heroName = document.querySelector('.hero-name');
 if (heroName) {
-  // Gunakan TreeWalker agar hanya text node yang dipecah,
-  // bukan karakter di dalam tag HTML (mencegah tag rusak)
   const walker = document.createTreeWalker(heroName, NodeFilter.SHOW_TEXT, null, false);
   const textNodes = [];
   let node;
@@ -184,6 +181,11 @@ if (skillsCanvas && typeof Matter !== 'undefined') {
   skillsCanvas.width = W;
   skillsCanvas.height = H;
 
+  // ── FIX: Teruskan wheel event ke window agar scroll halaman tidak terblokir
+  skillsCanvas.addEventListener('wheel', e => {
+    window.scrollBy({ top: e.deltaY, behavior: 'auto' });
+  }, { passive: true });
+
   const SKILLS = [
     { label: 'PHP',        color: '#7b7fb5', emoji: '🐘', img: 'assets/images/icons/php.png' },
     { label: 'TypeScript', color: '#3178c6', emoji: '📘', img: 'assets/images/icons/ts.png' },
@@ -208,16 +210,15 @@ if (skillsCanvas && typeof Matter !== 'undefined') {
     const image = new Image();
     image.src = s.img;
     image.onload = () => { imgCache[s.label] = image; };
-    image.onerror = () => { imgCache[s.label] = null; }; // fallback ke emoji
+    image.onerror = () => { imgCache[s.label] = null; };
   });
 
-  const engine = Engine.create({ gravity: { x: 0, y: 0 } }); // zero gravity = space
+  const engine = Engine.create({ gravity: { x: 0, y: 0 } });
   const world = engine.world;
 
   const R = Math.min(W, H) * 0.072;
   const WALL = 60;
 
-  // Invisible boundary walls (thick so balls never escape)
   const walls = [
     Bodies.rectangle(W/2, -WALL/2, W + WALL*2, WALL, { isStatic: true }),
     Bodies.rectangle(W/2, H+WALL/2, W + WALL*2, WALL, { isStatic: true }),
@@ -226,20 +227,18 @@ if (skillsCanvas && typeof Matter !== 'undefined') {
   ];
   World.add(world, walls);
 
-  // Create balls
   const balls = SKILLS.map((s, i) => {
     const cols = Math.ceil(Math.sqrt(SKILLS.length));
     const col = i % cols, row = Math.floor(i / cols);
     const x = R * 2 + col * ((W - R*4) / (cols - 1));
     const y = R * 2 + row * ((H - R*4) / Math.ceil(SKILLS.length / cols));
     const ball = Bodies.circle(x, y, R, {
-      restitution: 0.92,   // bouncy but not gaining energy
+      restitution: 0.92,
       friction: 0,
-      frictionAir: 0.008,  // tiny air drag = space feel
+      frictionAir: 0.008,
       frictionStatic: 0,
       label: s.label,
     });
-    // small random initial velocity
     Body.setVelocity(ball, {
       x: (Math.random() - 0.5) * 1.2,
       y: (Math.random() - 0.5) * 1.2,
@@ -249,18 +248,23 @@ if (skillsCanvas && typeof Matter !== 'undefined') {
   });
   World.add(world, balls);
 
-  // Mouse constraint for drag
+  // ── FIX: Mouse constraint hanya aktif saat tombol mouse ditekan (bukan hover biasa)
+  // Ini mencegah canvas "menangkap" scroll saat mouse hanya lewat di atasnya
   const mouse = Mouse.create(skillsCanvas);
   mouse.pixelRatio = window.devicePixelRatio || 1;
   const mc = MouseConstraint.create(engine, {
     mouse,
     constraint: { stiffness: 0.08, damping: 0.1, render: { visible: false } }
   });
+  // Nonaktifkan mouse constraint saat tidak ada drag aktif
+  mc.collisionFilter.mask = 0;
+  skillsCanvas.addEventListener('mousedown', () => { mc.collisionFilter.mask = 0xFFFFFFFF; });
+  document.addEventListener('mouseup', () => { mc.collisionFilter.mask = 0; });
   World.add(world, mc);
 
-  // Click smash — push nearby balls away from click point
+  // Click smash
   skillsCanvas.addEventListener('click', e => {
-    if (mc.body) return; // was dragging
+    if (mc.body) return;
     const rect = skillsCanvas.getBoundingClientRect();
     const cx = (e.clientX - rect.left) * (W / rect.width);
     const cy = (e.clientY - rect.top) * (H / rect.height);
@@ -275,16 +279,97 @@ if (skillsCanvas && typeof Matter !== 'undefined') {
     });
   });
 
-  // Custom canvas renderer
   const sc = skillsCanvas.getContext('2d');
 
+  // ── Aquarium bubbles
+  const bubbles = Array.from({ length: 18 }, () => ({
+    x: Math.random() * W,
+    y: Math.random() * H,
+    r: Math.random() * 6 + 2,
+    speedY: -(Math.random() * 0.4 + 0.15),
+    opacity: Math.random() * 0.25 + 0.05,
+    wobble: Math.random() * Math.PI * 2,
+    wobbleSpeed: (Math.random() - 0.5) * 0.03,
+  }));
+
+  // ── Nebula blobs (posisi acak, static)
+  const nebulas = [
+    { x: W * 0.15, y: H * 0.3,  r: W * 0.22, color: '0,229,255',   a: 0.045 },
+    { x: W * 0.8,  y: H * 0.65, r: W * 0.18, color: '168,85,247',  a: 0.04  },
+    { x: W * 0.5,  y: H * 0.85, r: W * 0.15, color: '0,255,136',   a: 0.03  },
+    { x: W * 0.7,  y: H * 0.15, r: W * 0.12, color: '14,165,233',  a: 0.035 },
+  ];
+
+  // ── Star field
+  const stars = Array.from({ length: 60 }, () => ({
+    x: Math.random() * W,
+    y: Math.random() * H,
+    r: Math.random() * 1.2 + 0.2,
+    a: Math.random() * 0.6 + 0.1,
+    twinkleOffset: Math.random() * Math.PI * 2,
+  }));
+
+  let frameCount = 0;
+
+  function drawBackground() {
+    // Deep space base
+    sc.fillStyle = '#060a0f';
+    sc.fillRect(0, 0, W, H);
+
+    // Nebula glow blobs
+    nebulas.forEach(n => {
+      const g = sc.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r);
+      g.addColorStop(0, `rgba(${n.color},${n.a})`);
+      g.addColorStop(1, `rgba(${n.color},0)`);
+      sc.fillStyle = g;
+      sc.fillRect(0, 0, W, H);
+    });
+
+    // Stars (twinkle)
+    stars.forEach(s => {
+      const twinkle = 0.5 + 0.5 * Math.sin(frameCount * 0.02 + s.twinkleOffset);
+      sc.beginPath();
+      sc.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      sc.fillStyle = `rgba(255,255,255,${s.a * twinkle})`;
+      sc.fill();
+    });
+
+    // Bubbles (floating up)
+    bubbles.forEach(b => {
+      b.y += b.speedY;
+      b.wobble += b.wobbleSpeed;
+      b.x += Math.sin(b.wobble) * 0.3;
+      if (b.y + b.r < 0) { b.y = H + b.r; b.x = Math.random() * W; }
+
+      // Bubble ring
+      sc.beginPath();
+      sc.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+      sc.strokeStyle = `rgba(120,220,255,${b.opacity})`;
+      sc.lineWidth = 0.8;
+      sc.stroke();
+
+      // Bubble highlight
+      sc.beginPath();
+      sc.arc(b.x - b.r * 0.28, b.y - b.r * 0.28, b.r * 0.3, 0, Math.PI * 2);
+      sc.fillStyle = `rgba(255,255,255,${b.opacity * 0.6})`;
+      sc.fill();
+    });
+
+    // Subtle scan line overlay
+    for (let y = 0; y < H; y += 4) {
+      sc.fillStyle = 'rgba(0,0,0,0.04)';
+      sc.fillRect(0, y, W, 1);
+    }
+  }
+
   function drawScene() {
+    frameCount++;
     sc.clearRect(0, 0, W, H);
+    drawBackground();
     balls.forEach(b => {
       const { x, y } = b.position;
       const s = b.meta;
 
-      // Glow ring
       const grd = sc.createRadialGradient(x - R*0.3, y - R*0.3, R*0.05, x, y, R);
       grd.addColorStop(0, s.color + 'dd');
       grd.addColorStop(0.6, s.color + '55');
@@ -294,14 +379,12 @@ if (skillsCanvas && typeof Matter !== 'undefined') {
       sc.fillStyle = grd;
       sc.fill();
 
-      // Border
       sc.beginPath();
       sc.arc(x, y, R, 0, Math.PI*2);
       sc.strokeStyle = s.color + 'bb';
       sc.lineWidth = 1.5;
       sc.stroke();
 
-      // Emoji
       const icon = imgCache[s.label];
       if (icon) {
         const size = R * 1.1;
@@ -314,7 +397,6 @@ if (skillsCanvas && typeof Matter !== 'undefined') {
         sc.fillText(s.emoji, x, y - R * 0.15);
       }
 
-      // Label
       sc.font = `bold ${R * 0.27}px 'Space Mono', monospace`;
       sc.fillStyle = '#ffffffcc';
       sc.fillText(s.label, x, y + R * 0.58);
@@ -323,6 +405,7 @@ if (skillsCanvas && typeof Matter !== 'undefined') {
 
   const runner = Runner.create();
   Runner.run(runner, engine);
+
   setInterval(() => {
     balls.forEach(b => {
       const v = b.speed;
@@ -334,14 +417,12 @@ if (skillsCanvas && typeof Matter !== 'undefined') {
       }
     });
   }, 200);
-  // Scroll gravity — bola ikut arah scroll
+
   let lastScrollY = window.scrollY;
   window.addEventListener('scroll', () => {
     const delta = window.scrollY - lastScrollY;
     lastScrollY = window.scrollY;
-
     const forceY = Math.max(Math.min(delta * 0.00012, 0.003), -0.003);
-
     balls.forEach(b => {
       Body.applyForce(b, b.position, {
         x: (Math.random() - 0.5) * Math.abs(forceY) * 0.3,
@@ -349,6 +430,7 @@ if (skillsCanvas && typeof Matter !== 'undefined') {
       });
     });
   });
+
   Events.on(engine, 'afterUpdate', drawScene);
 }
 
@@ -476,7 +558,6 @@ const observer = new IntersectionObserver(entries => {
 reveals.forEach(el => observer.observe(el));
 
 // ─── ACTIVE NAV ON SCROLL ───
-// Smooth scroll via data-target (URL tetap clean)
 document.querySelectorAll('[data-target]').forEach(a => {
   a.addEventListener('click', e => {
     e.preventDefault();
@@ -485,7 +566,6 @@ document.querySelectorAll('[data-target]').forEach(a => {
   });
 });
 
-// Active nav on scroll
 const sections = document.querySelectorAll('section');
 const navLinks = document.querySelectorAll('.nav-links a');
 
