@@ -443,18 +443,14 @@ if (home) {
     const py = (e.clientY - top) / height - 0.5;
     const heroNameEl = home.querySelector('.hero-name');
     const heroDesc = home.querySelector('.hero-desc');
-    const terminal = home.querySelector('.terminal');
     if (heroNameEl) heroNameEl.style.transform = `translate(${px * 18}px, ${py * 10}px)`;
     if (heroDesc) heroDesc.style.transform = `translate(${px * 10}px, ${py * 6}px)`;
-    if (terminal) terminal.style.transform = `translateY(-40%) translate(${px * -22}px, ${py * -14}px)`;
   });
   home.addEventListener('mouseleave', () => {
     const heroNameEl = home.querySelector('.hero-name');
     const heroDesc = home.querySelector('.hero-desc');
-    const terminal = home.querySelector('.terminal');
     if (heroNameEl) heroNameEl.style.transform = '';
     if (heroDesc) heroDesc.style.transform = '';
-    if (terminal) terminal.style.transform = 'translateY(-40%)';
   });
 }
 
@@ -483,42 +479,6 @@ document.querySelectorAll('.project-card').forEach(card => {
     setTimeout(() => card.style.transition = '', 500);
   });
 });
-
-// ─── DRAGGABLE TERMINAL ───
-const terminal = document.querySelector('.terminal');
-if (terminal) {
-  const bar = terminal.querySelector('.terminal-bar');
-  let dragging = false, startX, startY, initLeft, initTop;
-
-  bar.style.cursor = 'grab';
-  bar.addEventListener('mousedown', e => {
-    dragging = true;
-    bar.style.cursor = 'grabbing';
-    const rect = terminal.getBoundingClientRect();
-    startX = e.clientX; startY = e.clientY;
-    initLeft = rect.left; initTop = rect.top;
-    terminal.style.position = 'fixed';
-    terminal.style.right = 'auto';
-    terminal.style.top = initTop + 'px';
-    terminal.style.left = initLeft + 'px';
-    terminal.style.transform = 'none';
-    terminal.style.zIndex = 200;
-    e.preventDefault();
-  });
-
-  document.addEventListener('mousemove', e => {
-    if (!dragging) return;
-    const dx = e.clientX - startX;
-    const dy = e.clientY - startY;
-    terminal.style.left = initLeft + dx + 'px';
-    terminal.style.top = initTop + dy + 'px';
-  });
-
-  document.addEventListener('mouseup', () => {
-    dragging = false;
-    bar.style.cursor = 'grab';
-  });
-}
 
 // ─── COUNTER ANIMATION (about stats) ───
 function animateCount(el) {
