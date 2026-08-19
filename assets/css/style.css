@@ -66,16 +66,6 @@ section { position: relative; z-index: 1; min-height: 100vh; padding: 8rem 4rem;
 .btn-ghost { border: 1px solid var(--border); color: var(--muted); }
 .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 
-/* Terminal */
-.terminal { position: absolute; right: 0; top: 50%; transform: translateY(-40%); width: 380px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; opacity: 0; animation: fadeLeft 0.8s ease forwards 1s; }
-.terminal-bar { background: var(--surface2); padding: 0.75rem 1rem; display: flex; align-items: center; gap: 0.5rem; border-bottom: 1px solid var(--border); }
-.dot { width: 10px; height: 10px; border-radius: 50%; }
-.dot-r { background: #ff5f57; } .dot-y { background: #febc2e; } .dot-g { background: #28c840; }
-.terminal-title { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); margin-left: auto; }
-.terminal-body { padding: 1.25rem; font-family: var(--mono); font-size: 0.75rem; line-height: 2; }
-.t-prompt { color: var(--accent); } .t-cmd { color: var(--text); } .t-out { color: var(--muted); }
-.t-key { color: var(--accent2); } .t-val { color: #f97316; } .t-str { color: #a3e635; }
-.t-cursor { display: inline-block; width: 8px; height: 14px; background: var(--accent); vertical-align: middle; animation: blink 1s step-end infinite; }
 
 /* Section headers */
 .section-label { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem; }
