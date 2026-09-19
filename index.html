@@ -24,9 +24,26 @@
   <link rel="stylesheet" href="assets/css/style.css"/>
 </head>
 <body class="bg-surface font-body-md text-on-surface antialiased min-h-screen flex flex-col selection:bg-primary-fixed selection:text-on-primary-fixed">
+
+  <!-- Smooth Initial Page Transition Overlay -->
+  <div id="page-loader" class="fixed inset-0 z-[99999] bg-surface flex items-center justify-center transition-opacity duration-700 pointer-events-none">
+    <div class="flex flex-col items-center gap-3">
+      <svg width="36" height="36" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="animate-pulse">
+        <rect x="8" y="8" width="8" height="32" fill="#111111"/>
+        <path d="M18 22L32 8H40L26 22H18Z" fill="#00684A"/>
+        <path d="M18 26L32 40H40L26 26H18Z" fill="#111111"/>
+      </svg>
+      <span class="font-label-code text-[11px] uppercase tracking-widest text-primary font-bold animate-pulse">
+        INITIALIZING SYSTEM...
+      </span>
+    </div>
+  </div>
+
   <!-- Custom Cursor Elements -->
   <div id="cursor-dot" class="fixed top-0 left-0 w-2 h-2 bg-primary rounded-full pointer-events-none z-[9999] hidden md:block"></div>
   <div id="cursor-ring" class="fixed top-0 left-0 w-8 h-8 border border-primary/60 rounded-full pointer-events-none z-[9998] transition-all duration-200 ease-out hidden md:block"></div>
+
+
 
   <!-- NAVBAR SECTION -->
   <div data-include="sections/navbar.html"></div>

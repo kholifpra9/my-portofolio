@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Memastikan active nav indicator & scroll progress tetap akurat
     window.dispatchEvent(new Event('scroll'));
   });
-  
+
   // 1. Dynamic Section HTML Loader
   const includes = document.querySelectorAll('[data-include]');
   await Promise.all(
@@ -40,6 +40,15 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     })
   );
+
+  // HILANGKAN OVERLAY HALUS SETELAH SELURUH HTML TERLOAD
+  const pageLoader = document.getElementById('page-loader');
+  if (pageLoader) {
+    pageLoader.classList.add('opacity-0');
+    setTimeout(() => {
+      pageLoader.remove(); // Hapus dari DOM agar tidak menghalangi klik
+    }, 700); // Sesuai durasi duration-700
+  }
 
   // ----------------------------------------------------------------------
   // DILAKUKAN SETELAH SELURUH HTML TERLOAD
