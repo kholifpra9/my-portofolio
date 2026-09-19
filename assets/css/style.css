@@ -24,3 +24,17 @@ html, body {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+/* Reveal on Scroll Animation */
+.reveal-section {
+  opacity: 0;
+  transform: translateY(100px);
+  transition: opacity 1.5s cubic-bezier(0.22, 1, 0.36, 1), 
+              transform 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}

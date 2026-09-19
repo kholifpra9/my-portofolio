@@ -17,69 +17,89 @@ document.addEventListener('DOMContentLoaded', async () => {
     })
   );
 
+  // ----------------------------------------------------------------------
+  // DILAKUKAN SETELAH SELURUH HTML TERLOAD
+  // ----------------------------------------------------------------------
+
   // 2. Mobile Drawer Elements & Handlers
   const hamburger = document.getElementById('hamburger');
   const drawer = document.getElementById('mobile-drawer');
   const drawerClose = document.getElementById('drawer-close');
   const drawerLinks = document.querySelectorAll('.drawer-link');
 
-  if (hamburger && drawer) {
-    hamburger.addEventListener('click', () => {
-      drawer.classList.toggle('hidden');
-      drawer.classList.toggle('flex');
-      document.body.style.overflow = drawer.classList.contains('flex') ? 'hidden' : '';
-    });
-  }
+  const openDrawer = () => {
+    if (drawer) {
+      drawer.classList.remove('hidden');
+      drawer.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+  };
 
-  if (drawerClose && drawer) {
-    drawerClose.addEventListener('click', () => {
+  const closeDrawer = () => {
+    if (drawer) {
       drawer.classList.add('hidden');
       drawer.classList.remove('flex');
       document.body.style.overflow = '';
-    });
-  }
+    }
+  };
 
-  drawerLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      if (drawer) {
-        drawer.classList.add('hidden');
-        drawer.classList.remove('flex');
+  if (hamburger) hamburger.addEventListener('click', openDrawer);
+  if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+
+  drawerLinks.forEach((link) => {
+    link.addEventListener('click', closeDrawer);
+  });
+
+  // 3. Scroll Reveal Animation Observer
+  const initScrollReveal = () => {
+    const sectionsToAnimate = document.querySelectorAll('main section');
+    
+    sectionsToAnimate.forEach((section) => {
+      section.classList.add('reveal-section');
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            // Sekali muncul, biarkan tetap terpampang tanpa mengulang animasi
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+        rootMargin: '0px 0px -60px 0px',
       }
-      document.body.style.overflow = '';
-    });
-  });
+    );
 
-  // 3. Scroll Progress Bar
-  const progressBar = document.getElementById('progress-bar');
-  window.addEventListener('scroll', () => {
-    if (!progressBar) return;
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = (scrollTop / docHeight) * 100;
-    progressBar.style.width = progress + '%';
-  });
+    sectionsToAnimate.forEach((section) => observer.observe(section));
+  };
 
-  // 4. Active Navigation Link Indicator on Scroll
+  initScrollReveal();
+
+  // 4. Active Navigation Link Indicator & Smooth Nav
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('nav a[href^="#"]');
 
   window.addEventListener('scroll', () => {
     let current = '';
-    sections.forEach(s => {
+    sections.forEach((s) => {
       if (window.scrollY >= s.offsetTop - 120) {
         current = s.id;
       }
     });
 
-    navLinks.forEach(a => {
+    navLinks.forEach((a) => {
       const isActive = a.getAttribute('href') === '#' + current;
-      a.classList.toggle('text-primary-container', isActive);
+      a.classList.toggle('text-primary', isActive);
       a.classList.toggle('border-b-2', isActive);
-      a.classList.toggle('border-primary-container', isActive);
+      a.classList.toggle('border-primary', isActive);
       a.classList.toggle('pb-1', isActive);
       a.classList.toggle('text-on-surface-variant', !isActive);
     });
-  });
+  }, { passive: true });
 
   // 5. Project Carousel & Slider
   (function initProjectSlider() {

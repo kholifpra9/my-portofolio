@@ -1,15 +1,34 @@
-<div class="fixed inset-0 z-40 bg-surface/98 backdrop-blur-md hidden flex-col justify-center items-start px-margin py-space-2xl gap-space-lg" id="mobile-drawer">
-  <div class="w-full flex items-center justify-between border-b border-surface-container-high pb-space-lg mb-space-lg">
-    <span class="font-headline-sm text-headline-sm uppercase text-on-surface">KHOLIF PRASETYO</span>
-    <button id="drawer-close" class="p-space-xs text-on-surface hover:bg-surface-container-high transition-colors">
-      <span class="material-symbols-outlined">close</span>
+<div class="fixed inset-0 z-50 bg-surface/95 backdrop-blur-xl hidden flex-col justify-between px-margin py-space-xl transition-all duration-300" id="mobile-drawer">
+  
+  <!-- Header Drawer -->
+  <div class="w-full flex items-center justify-between border-b border-surface-container-high pb-space-md">
+    <div class="flex items-center gap-2">
+      <svg width="28" height="28" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="8" y="8" width="8" height="32" fill="#111111"/>
+        <path d="M18 22L32 8H40L26 22H18Z" fill="#00684A"/>
+        <path d="M18 26L32 40H40L26 26H18Z" fill="#111111"/>
+      </svg>
+      <span class="font-headline-sm text-[16px] uppercase text-on-surface font-bold tracking-tight">KHOLIF PRASETYO</span>
+    </div>
+    <button id="drawer-close" aria-label="Close Menu" class="p-2 text-on-surface hover:bg-surface-container-high transition-colors border border-outline-variant">
+      <span class="material-symbols-outlined block text-[24px]">close</span>
     </button>
   </div>
-  <a class="drawer-link font-headline-lg text-headline-lg uppercase text-on-surface hover:text-primary-container transition-colors" href="#about">About</a>
-  <a class="drawer-link font-headline-lg text-headline-lg uppercase text-on-surface hover:text-primary-container transition-colors" href="#experience">Experience</a>
-  <a class="drawer-link font-headline-lg text-headline-lg uppercase text-on-surface hover:text-primary-container transition-colors" href="#education">Education</a>
-  <a class="drawer-link font-headline-lg text-headline-lg uppercase text-on-surface hover:text-primary-container transition-colors" href="#projects">Projects</a>
-  <a class="drawer-link font-headline-lg text-headline-lg uppercase text-on-surface hover:text-primary-container transition-colors" href="#skills">Skills</a>
-  <a class="drawer-link font-headline-lg text-headline-lg uppercase text-on-surface hover:text-primary-container transition-colors" href="#contact">Contact</a>
-  <a class="mt-space-md inline-flex items-center justify-center px-space-lg py-space-sm bg-primary-container text-on-primary font-label-caps text-label-caps uppercase tracking-wider" href="#contact">Hire Me / Contact</a>
+
+  <!-- Links Section -->
+  <div class="flex flex-col gap-space-md my-auto py-space-lg">
+    <a class="drawer-link font-headline-lg text-[28px] uppercase text-on-surface hover:text-primary transition-colors border-b border-surface-container-high/50 pb-2" href="#about">01. About</a>
+    <a class="drawer-link font-headline-lg text-[28px] uppercase text-on-surface hover:text-primary transition-colors border-b border-surface-container-high/50 pb-2" href="#experience">02. Experience</a>
+    <a class="drawer-link font-headline-lg text-[28px] uppercase text-on-surface hover:text-primary transition-colors border-b border-surface-container-high/50 pb-2" href="#education">03. Education</a>
+    <a class="drawer-link font-headline-lg text-[28px] uppercase text-on-surface hover:text-primary transition-colors border-b border-surface-container-high/50 pb-2" href="#projects">04. Projects</a>
+    <a class="drawer-link font-headline-lg text-[28px] uppercase text-on-surface hover:text-primary transition-colors border-b border-surface-container-high/50 pb-2" href="#skills">05. Skills</a>
+    <a class="drawer-link font-headline-lg text-[28px] uppercase text-on-surface hover:text-primary transition-colors border-b border-surface-container-high/50 pb-2" href="#contact">06. Contact</a>
+  </div>
+
+  <!-- Drawer Footer -->
+  <div class="pt-space-md border-t border-surface-container-high flex items-center justify-between font-label-code text-[11px] text-outline uppercase">
+    <span>Cianjur, Indonesia</span>
+    <span class="text-primary font-bold">Available for Hire</span>
+  </div>
+
 </div>

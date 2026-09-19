@@ -1,71 +1,76 @@
 <section class="w-full border-b border-surface-container-high bg-surface overflow-hidden" id="about">
   <div class="max-w-[1440px] mx-auto px-margin md:px-margin-desktop py-space-xl lg:py-space-2xl">
     
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-2 lg:gap-4 items-center">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl lg:gap-space-lg items-center">
       
-      <!-- KIRI: TEKS NAMA & CONTENT (ALIGNED LEFT & PROPORTIONAL) -->
-      <div class="lg:col-span-7 flex flex-col justify-center z-10">
+      <!-- KIRI: TEKS NAMA & CONTENT -->
+      <div class="lg:col-span-7 flex flex-col justify-center z-10 order-2 lg:order-1">
         
-        <!-- Interactive Terminal Command / Click to Copy -->
-        <div class="inline-flex items-center gap-2 mb-space-xs sm:mb-space-sm">
-          <button id="copy-email-btn" type="button" class="inline-flex items-center gap-2 px-space-sm py-1 bg-surface-container-high border border-outline-variant hover:border-primary text-on-surface font-label-code text-[11px] sm:text-label-code uppercase tracking-wider font-semibold transition-all group cursor-pointer active:scale-95" title="Click to copy email">
-            <span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
-            <span class="text-primary font-bold">&gt;_</span>
-            <span id="copy-text">kholifprasetyo@gmail.com</span>
-            <span class="material-symbols-outlined text-[14px] text-outline group-hover:text-primary transition-colors">content_copy</span>
-          </button>
-          
-          <span class="inline-flex items-center px-space-sm py-1 bg-primary/10 border border-primary/30 text-primary font-label-code text-[11px] uppercase tracking-wider font-semibold">
-            FULL-STACK & AI
+        <!-- Badge Skill -->
+        <div class="inline-flex items-center flex-wrap gap-2 mb-space-xs sm:mb-space-sm">
+          <span class="inline-flex items-center px-space-sm py-1 bg-primary text-on-primary font-label-code text-[11px] sm:text-label-code uppercase tracking-wider font-semibold">
+            FULL-STACK ENGINEER
           </span>
         </div>
 
+        <!-- Judul Nama Stack 3 Kata (Responsive Typography) -->
+        <h1 class="font-headline-xl text-[38px] leading-[38px] xs:text-[46px] xs:leading-[44px] sm:text-[72px] sm:leading-[64px] lg:text-[92px] lg:leading-[80px] xl:text-[110px] xl:leading-[94px] uppercase text-on-surface mb-space-md flex flex-col font-black w-full select-none items-start text-left tracking-tight">
+          <span class="tracking-[0.04em]">KHOLIF</span>
+          <span class="tracking-normal">PRASETYO</span>
+          <span class="text-primary tracking-[0.06em]">ADITYA.</span>
+        </h1>
+
         <!-- Deskripsi -->
-        <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl leading-relaxed mb-space-lg">
+        <p class="font-body-md sm:font-body-lg text-body-md sm:text-body-lg text-on-surface-variant max-w-xl leading-relaxed mb-space-lg">
           Full-Stack Engineer with hands-on production experience building internal tools, ETL pipelines, and AI-integrated systems across web and mobile. Specialized in transforming manual workflows into high-throughput automated platforms.
         </p>
 
         <!-- Tombol CTA -->
-        <div class="flex flex-wrap items-center gap-space-md mb-space-xl">
-          <a class="inline-flex items-center justify-center px-space-lg py-space-sm border border-on-surface bg-on-surface text-surface hover:bg-primary hover:border-primary transition-all duration-150 font-label-caps text-label-caps uppercase tracking-wider" href="#experience">View Work Experience</a>
-          <a class="inline-flex items-center justify-center px-space-lg py-space-sm border border-on-surface text-on-surface hover:bg-surface-container-high transition-all duration-150 font-label-caps text-label-caps uppercase tracking-wider" href="#projects">Explore Live Projects</a>
-          <a class="inline-flex items-center gap-2 text-primary font-label-caps text-label-caps uppercase tracking-wider hover:underline underline-offset-4 py-space-sm" href="mailto:kholifprasetyo@gmail.com?subject=Resume%20Request%20-%20Kholif%20Prasetyo">
+        <div class="flex flex-col xs:flex-row flex-wrap items-stretch xs:items-center gap-space-sm sm:gap-space-md mb-space-xl">
+          <a class="inline-flex items-center justify-center px-space-lg py-3 border border-on-surface bg-on-surface text-surface hover:bg-primary hover:border-primary transition-all duration-150 font-label-caps text-label-caps uppercase tracking-wider text-center" href="#experience">
+            View Work Experience
+          </a>
+          <a class="inline-flex items-center justify-center px-space-lg py-3 border border-on-surface text-on-surface hover:bg-surface-container-high transition-all duration-150 font-label-caps text-label-caps uppercase tracking-wider text-center" href="#projects">
+            Explore Live Projects
+          </a>
+          <a class="inline-flex items-center justify-center gap-2 text-primary font-label-caps text-label-caps uppercase tracking-wider hover:underline underline-offset-4 py-2" href="mailto:kholifprasetyo@gmail.com?subject=Resume%20Request%20-%20Kholif%20Prasetyo">
             <span class="material-symbols-outlined text-[18px]">download</span>
             Download Resume
           </a>
         </div>
 
-        <!-- Stats Grid -->
-        <div class="grid grid-cols-3 gap-space-sm pt-space-lg border-t border-surface-container-high">
-          <div>
-            <span class="font-label-code text-label-code text-outline uppercase block">Architecture</span>
-            <span class="font-headline-sm text-headline-sm text-on-surface uppercase">Distributed & Monolith</span>
+        <!-- Stats Grid (1 Kolom di HP, 3 Kolom di Tablet/Desktop) -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-space-md pt-space-lg border-t border-surface-container-high">
+          <div class="border-b sm:border-b-0 pb-space-xs sm:pb-0 border-surface-container-high/50">
+            <span class="font-label-code text-[10px] sm:text-label-code text-outline uppercase block mb-0.5">Architecture</span>
+            <span class="font-headline-sm text-[15px] sm:text-headline-sm text-on-surface uppercase font-bold">Distributed & Monolith</span>
+          </div>
+          <div class="border-b sm:border-b-0 pb-space-xs sm:pb-0 border-surface-container-high/50">
+            <span class="font-label-code text-[10px] sm:text-label-code text-outline uppercase block mb-0.5">Primary Stack</span>
+            <span class="font-headline-sm text-[15px] sm:text-headline-sm text-on-surface uppercase font-bold">Laravel • Next.js • Flutter</span>
           </div>
           <div>
-            <span class="font-label-code text-label-code text-outline uppercase block">Primary Stack</span>
-            <span class="font-headline-sm text-headline-sm text-on-surface uppercase">Laravel • Next JS • Flutter</span>
-          </div>
-          <div>
-            <span class="font-label-code text-label-code text-outline uppercase block">AI Vector</span>
-            <span class="font-headline-sm text-headline-sm text-on-surface uppercase">Groq LLMs • Automation</span>
+            <span class="font-label-code text-[10px] sm:text-label-code text-outline uppercase block mb-0.5">AI Vector</span>
+            <span class="font-headline-sm text-[15px] sm:text-headline-sm text-on-surface uppercase font-bold">Groq LLMs • Automation</span>
           </div>
         </div>
+
       </div>
 
-      <!-- KANAN: FOTO PROFILE (MEPET KANAN DENGAN BUNDERAN IJO) -->
-      <div class="lg:col-span-5 flex justify-center lg:justify-end relative mt-space-md lg:mt-0">
-        <div class="relative w-full max-w-[420px] sm:max-w-[480px] lg:max-w-[540px] aspect-[4/5] flex items-center justify-center">
+      <!-- KANAN: FOTO PROFILE & STATUS -->
+      <div class="lg:col-span-5 flex justify-center lg:justify-end relative order-1 lg:order-2 mb-space-md lg:mb-0">
+        <div class="relative w-full max-w-[280px] xs:max-w-[320px] sm:max-w-[420px] lg:max-w-[500px] aspect-[4/5] flex items-center justify-center mx-auto">
           
           <!-- Bunderan Hijau -->
-          <div class="absolute w-80 h-80 sm:w-96 sm:h-96 lg:w-[420px] lg:h-[420px] rounded-full bg-primary/90 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none"></div>
+          <div class="absolute w-56 h-56 xs:w-64 xs:h-64 sm:w-80 sm:h-80 lg:w-[380px] lg:h-[380px] rounded-full bg-primary/90 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none"></div>
 
           <!-- Foto Profile PNG -->
-          <img alt="Kholif Prasetyo Aditya" class="relative z-10 w-full h-full object-contain scale-110 origin-bottom grayscale contrast-125 hover:grayscale-0 transition-all duration-500 drop-shadow-2xl" src="assets/images/profile.png"/>
+          <img alt="Kholif Prasetyo Aditya" class="relative z-10 w-full h-full object-contain scale-105 origin-bottom grayscale contrast-125 hover:grayscale-0 transition-all duration-500 drop-shadow-2xl" src="assets/images/profile.png"/>
 
           <!-- Status Badge -->
-          <div class="absolute -bottom-2 right-0 z-20 bg-surface/95 backdrop-blur-md border border-outline-variant px-space-md py-1.5 flex items-center gap-2 shadow-md">
+          <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 sm:left-auto sm:right-0 sm:translate-x-0 z-20 bg-surface/95 backdrop-blur-md border border-outline-variant px-space-sm sm:px-space-md py-1.5 flex items-center gap-2 shadow-md w-max max-w-[90vw]">
             <span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse shrink-0"></span>
-            <span class="font-label-caps text-label-caps uppercase text-on-surface font-semibold tracking-wider whitespace-nowrap">STATUS: ONLINE — Available for Roles</span>
+            <span class="font-label-caps text-[10px] sm:text-label-caps uppercase text-on-surface font-semibold tracking-wider whitespace-nowrap">STATUS: ONLINE — Available for Roles</span>
           </div>
 
         </div>
