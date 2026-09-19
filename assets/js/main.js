@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // DILAKUKAN SETELAH SELURUH HTML TERLOAD
   // ----------------------------------------------------------------------
 
-  // 2. Mobile Drawer Elements & Handlers
+  // 2. Mobile Drawer Elements & Handlers (Smooth Slide-Down)
   const hamburger = document.getElementById('hamburger');
   const drawer = document.getElementById('mobile-drawer');
   const drawerClose = document.getElementById('drawer-close');
@@ -29,16 +29,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const openDrawer = () => {
     if (drawer) {
-      drawer.classList.remove('hidden');
-      drawer.classList.add('flex');
+      drawer.classList.remove('-translate-y-full', 'opacity-0', 'pointer-events-none');
+      drawer.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
       document.body.style.overflow = 'hidden';
     }
   };
 
   const closeDrawer = () => {
     if (drawer) {
-      drawer.classList.add('hidden');
-      drawer.classList.remove('flex');
+      drawer.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
+      drawer.classList.add('-translate-y-full', 'opacity-0', 'pointer-events-none');
       document.body.style.overflow = '';
     }
   };
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('nav a[href^="#"]');
 
-  window.addEventListener('scroll', () => {
+  const updateActiveLinks = () => {
     let current = '';
     sections.forEach((s) => {
       if (window.scrollY >= s.offsetTop - 120) {
@@ -91,15 +91,33 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     });
 
+    // Update Desktop Nav
     navLinks.forEach((a) => {
       const isActive = a.getAttribute('href') === '#' + current;
       a.classList.toggle('text-primary', isActive);
-      a.classList.toggle('border-b-2', isActive);
-      a.classList.toggle('border-primary', isActive);
-      a.classList.toggle('pb-1', isActive);
+      a.classList.toggle('after:w-full', isActive);
       a.classList.toggle('text-on-surface-variant', !isActive);
     });
-  }, { passive: true });
+
+    // Update Mobile Drawer
+    drawerLinks.forEach((a) => {
+      const isActive = a.getAttribute('href') === '#' + current;
+      a.classList.toggle('text-primary', isActive);
+      a.classList.toggle('bg-surface-container-high', isActive);
+      a.classList.toggle('text-on-surface', !isActive);
+
+      const arrow = a.querySelector('.drawer-arrow');
+      if (arrow) {
+        arrow.classList.toggle('opacity-100', isActive);
+        arrow.classList.toggle('translate-x-0', isActive);
+        arrow.classList.toggle('opacity-0', !isActive);
+        arrow.classList.toggle('-translate-x-2', !isActive);
+      }
+    });
+  };
+
+  window.addEventListener('scroll', updateActiveLinks, { passive: true });
+  updateActiveLinks();
 
   // 5. Project Carousel & Slider
   (function initProjectSlider() {
@@ -143,5 +161,50 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     slider.addEventListener('scroll', () => requestAnimationFrame(updateDots), { passive: true });
+  })();
+
+  // Custom Smooth Cursor Follower (Fixed Jump Bug)
+  (function initCustomCursor() {
+    const dot = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+
+    if (!dot || !ring || window.innerWidth < 768) return;
+
+    let mouseX = -100, mouseY = -100;
+    let ringX = -100, ringY = -100;
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+
+      // Titik kecil langsung presisi ikuti posisi mouse tanpa offset lag
+      dot.style.left = `${mouseX}px`;
+      dot.style.top = `${mouseY}px`;
+    });
+
+    // Pergerakan meluncur halus untuk outer ring
+    function render() {
+      ringX += (mouseX - ringX) * 0.2;
+      ringY += (mouseY - ringY) * 0.2;
+
+      ring.style.left = `${ringX}px`;
+      ring.style.top = `${ringY}px`;
+
+      requestAnimationFrame(render);
+    }
+    render();
+
+    // Event Delegation agar tetap berfungsi walau elemen HTML di-fetch secara dinamis
+    document.addEventListener('mouseover', (e) => {
+      if (e.target.closest('a, button, input, [role="button"]')) {
+        document.body.classList.add('cursor-hover-active');
+      }
+    });
+
+    document.addEventListener('mouseout', (e) => {
+      if (e.target.closest('a, button, input, [role="button"]')) {
+        document.body.classList.remove('cursor-hover-active');
+      }
+    });
   })();
 });

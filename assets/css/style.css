@@ -38,3 +38,41 @@ html, body {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Hide default cursor on desktop for custom experience */
+@media (min-width: 768px) {
+  body {
+    cursor: none;
+  }
+  a, button, [role="button"] {
+    cursor: none;
+  }
+}
+
+/* Custom Cursor Active / Hover States */
+/* Sembunyikan kursor bawaan di desktop */
+@media (min-width: 768px) {
+  body, a, button, [role="button"] {
+    cursor: none !important;
+  }
+}
+
+/* Base alignment for cursor elements */
+#cursor-dot, #cursor-ring {
+  transform: translate(-50%, -50%);
+  will-change: transform, width, height;
+}
+
+/* Hover state saat kursor di atas button / link */
+body.cursor-hover-active #cursor-ring {
+  width: 44px;
+  height: 44px;
+  background-color: rgba(0, 104, 74, 0.15);
+  border-color: #00684A;
+}
+
+body.cursor-hover-active #cursor-dot {
+  width: 10px;
+  height: 10px;
+  background-color: #00684A;
+}

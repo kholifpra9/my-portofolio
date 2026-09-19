@@ -1,4 +1,4 @@
-<div class="fixed inset-0 z-50 bg-surface/95 backdrop-blur-xl hidden flex-col justify-between px-margin py-space-xl transition-all duration-300" id="mobile-drawer">
+<div class="fixed inset-0 z-50 bg-surface/95 backdrop-blur-xl flex flex-col justify-between px-margin py-space-xl -translate-y-full opacity-0 pointer-events-none transition-all duration-500 ease-in-out" id="mobile-drawer">
   
   <!-- Header Drawer -->
   <div class="w-full flex items-center justify-between border-b border-surface-container-high pb-space-md">
@@ -10,19 +10,42 @@
       </svg>
       <span class="font-headline-sm text-[16px] uppercase text-on-surface font-bold tracking-tight">KHOLIF PRASETYO</span>
     </div>
-    <button id="drawer-close" aria-label="Close Menu" class="p-2 text-on-surface hover:bg-surface-container-high transition-colors border border-outline-variant">
+    <button id="drawer-close" aria-label="Close Menu" class="p-2 text-on-surface hover:bg-surface-container-high transition-colors border border-outline-variant cursor-pointer">
       <span class="material-symbols-outlined block text-[24px]">close</span>
     </button>
   </div>
 
-  <!-- Links Section -->
-  <div class="flex flex-col gap-space-md my-auto py-space-lg">
-    <a class="drawer-link font-headline-lg text-[28px] uppercase text-on-surface hover:text-primary transition-colors border-b border-surface-container-high/50 pb-2" href="#about">01. About</a>
-    <a class="drawer-link font-headline-lg text-[28px] uppercase text-on-surface hover:text-primary transition-colors border-b border-surface-container-high/50 pb-2" href="#experience">02. Experience</a>
-    <a class="drawer-link font-headline-lg text-[28px] uppercase text-on-surface hover:text-primary transition-colors border-b border-surface-container-high/50 pb-2" href="#education">03. Education</a>
-    <a class="drawer-link font-headline-lg text-[28px] uppercase text-on-surface hover:text-primary transition-colors border-b border-surface-container-high/50 pb-2" href="#projects">04. Projects</a>
-    <a class="drawer-link font-headline-lg text-[28px] uppercase text-on-surface hover:text-primary transition-colors border-b border-surface-container-high/50 pb-2" href="#skills">05. Skills</a>
-    <a class="drawer-link font-headline-lg text-[28px] uppercase text-on-surface hover:text-primary transition-colors border-b border-surface-container-high/50 pb-2" href="#contact">06. Contact</a>
+  <!-- Links Section dengan Hover & Active Animation -->
+  <div class="flex flex-col gap-space-sm my-auto py-space-md">
+    <a class="drawer-link group flex items-center justify-between font-headline-lg text-[26px] xs:text-[28px] uppercase text-on-surface-variant hover:text-primary hover:pl-3 transition-all duration-200 border-b border-surface-container-high/50 pb-3" href="#about">
+      <span>01. About</span>
+
+    </a>
+
+    <a class="drawer-link group flex items-center justify-between font-headline-lg text-[26px] xs:text-[28px] uppercase text-on-surface-variant hover:text-primary hover:pl-3 transition-all duration-200 border-b border-surface-container-high/50 pb-3" href="#experience">
+      <span>02. Experience</span>
+
+    </a>
+
+    <a class="drawer-link group flex items-center justify-between font-headline-lg text-[26px] xs:text-[28px] uppercase text-on-surface-variant hover:text-primary hover:pl-3 transition-all duration-200 border-b border-surface-container-high/50 pb-3" href="#education">
+      <span>03. Education</span>
+
+    </a>
+
+    <a class="drawer-link group flex items-center justify-between font-headline-lg text-[26px] xs:text-[28px] uppercase text-on-surface-variant hover:text-primary hover:pl-3 transition-all duration-200 border-b border-surface-container-high/50 pb-3" href="#projects">
+      <span>04. Projects</span>
+
+    </a>
+
+    <a class="drawer-link group flex items-center justify-between font-headline-lg text-[26px] xs:text-[28px] uppercase text-on-surface-variant hover:text-primary hover:pl-3 transition-all duration-200 border-b border-surface-container-high/50 pb-3" href="#skills">
+      <span>05. Skills</span>
+
+    </a>
+
+    <a class="drawer-link group flex items-center justify-between font-headline-lg text-[26px] xs:text-[28px] uppercase text-on-surface-variant hover:text-primary hover:pl-3 transition-all duration-200 border-b border-surface-container-high/50 pb-3" href="#contact">
+      <span>06. Contact</span>
+
+    </a>
   </div>
 
   <!-- Drawer Footer -->
