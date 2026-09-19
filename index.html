@@ -1,214 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="h-full scroll-smooth scroll-pt-20" lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Kholif Prasetyo — Full-Stack Engineer based in Indonesia. Building production-grade web, mobile & AI-integrated systems."/>
   <meta name="google-site-verification" content="bu2puGhfjEMqkhjw0HdIeCqHefs3eCRvMCfIE3XdFtE" />
+
   <title>Kholif Prasetyo | Full-Stack Engineer</title>
+  
   <link rel="icon" type="image/png" href="assets/images/logo.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Geist:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+  
+  <!-- Tailwind CSS & Separated Config -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="assets/js/tailwind.config.js"></script>
+
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css">
+  
+  <link rel="stylesheet" href="assets/css/style.css"/>
 </head>
-<body>
+<body class="bg-surface font-body-md text-on-surface antialiased min-h-screen flex flex-col selection:bg-primary-fixed selection:text-on-primary-fixed">
+  <!-- Custom Cursor Elements -->
+  <div id="cursor-dot" class="fixed top-0 left-0 w-2 h-2 bg-primary rounded-full pointer-events-none z-[9999] hidden md:block"></div>
+  <div id="cursor-ring" class="fixed top-0 left-0 w-8 h-8 border border-primary/60 rounded-full pointer-events-none z-[9998] transition-all duration-200 ease-out hidden md:block"></div>
 
-<canvas id="particles" style="position:fixed;top:0;left:0;z-index:0;pointer-events:none;"></canvas>
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
+  <!-- NAVBAR SECTION -->
+  <div data-include="sections/navbar.html"></div>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-logo"><span></span>kholif<span>.Portofolio</span></div>
-  <ul class="nav-links">
-    <li><a href="#" data-target="home">home</a></li>
-    <li><a href="#" data-target="about">about</a></li>
-    <li><a href="#" data-target="skills">skills</a></li>
-    <li><a href="#" data-target="experience">experience</a></li>
-    <li><a href="#" data-target="projects">projects</a></li>
-    <li><a href="#" data-target="contact">contact</a></li>
-  </ul>
-  <button class="hamburger" id="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
+  <!-- MOBILE DRAWER SECTION -->
+  <div data-include="sections/mobile-drawer.html"></div>
 
-<!-- MOBILE DRAWER -->
-<div class="nav-drawer" id="drawer">
-  <a href="#" data-target="home" class="drawer-link">home</a>
-  <a href="#" data-target="about" class="drawer-link">about</a>
-  <a href="#" data-target="skills" class="drawer-link">skills</a>
-  <a href="#" data-target="experience" class="drawer-link">experience</a>
-  <a href="#" data-target="projects" class="drawer-link">projects</a>
-  <a href="#" data-target="contact" class="drawer-link">contact</a>
-</div>
+  <main class="w-full pt-20 flex-1 bg-surface">
+    <!-- Menggunakan border pembatas dan ruang jarak konsisten di tiap section -->
+    <div class="flex flex-col w-full divide-y divide-surface-container-high">
 
-<!-- HERO -->
-<section id="home">
-  <p class="hero-tag">// <span id="typing-text">Full-Stack Engineer</span><span class="t-cursor" style="margin-left:2px;width:6px;height:0.9em;vertical-align:middle;display:inline-block;background:var(--accent);animation:blink 1s step-end infinite;"></span></p>
-  <h1 class="hero-name">
-    Kholif<br>
-    <span class="line2">Prasetyo</span><br>
-    <span class="accent">Aditya.</span>
-  </h1>
-  <p class="hero-desc">
-    Building production-grade web, mobile & AI-integrated systems.<br>
-    Based in Indonesia — shipping things that actually work.
-  </p>
-  <div class="hero-cta">
-    <a href="#projects" class="btn btn-primary">View Projects →</a>
-    <a href="#contact" class="btn btn-ghost">Get in Touch</a>
-  </div>
-
-
-  <div class="hero-scroll">scroll to explore</div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="about-left reveal">
-    <p class="section-label">01 // about</p>
-    <h2 class="section-title">Building things<br>that matter.</h2>
-    <div class="about-text">
-      <p>I'm a <strong>Full-Stack Engineer</strong> based in Indonesia with a passion for building systems that solve real operational problems — from internal tooling to AI-powered automation.</p>
-      <p>During my 6-month internship at PT Sigma Digital Nusantara, I shipped <strong>5 production tools</strong> — including a solo-built TikTok intelligence scraper integrated with Groq AI, and contributed to a BigQuery ETL pipeline serving the BI & Data division daily.</p>
-      <p>I studied Informatics Engineering at Universitas Suryakancana and presented at <strong>Seminar Nasional Teknik UNSUR 2025</strong> on AI innovation.</p>
+      <!-- SECTIONS WITH CLEAR BOUNDARIES & REVEAL ANIMATION -->
+      <div data-include="sections/hero.html"></div>
+      <div data-include="sections/experience.html"></div>
+      <div data-include="sections/education.html"></div>
+      <div data-include="sections/projects.html"></div>
+      <div data-include="sections/skills.html"></div>
+      <div data-include="sections/impact.html"></div>
+      <div data-include="sections/contact.html"></div>
+      
     </div>
-  </div>
-  <div class="about-stats reveal">
-    <div class="stat"><div class="stat-num" data-target="5" data-suffix="">5</div><div class="stat-label">production tools shipped</div></div>
-    <div class="stat"><div class="stat-num" data-target="5000" data-suffix="+">5K+</div><div class="stat-label">waybills tracked / session</div></div>
-  </div>
-</section>
+  </main>
 
-<!-- SKILLS -->
-<section id="skills">
-  <p class="section-label reveal">02 // skills</p>
-  <h2 class="section-title reveal">Tech Stack.</h2>
-  <div class="skills-canvas-wrap">
-    <canvas id="skillsCanvas"></canvas>
-    <p class="skills-hint">// drag & smash the balls</p>
-  </div>
-</section>
+  <!-- FOOTER SECTION -->
+  <div data-include="sections/footer.html"></div>
 
-<!-- EXPERIENCE -->
-<section id="experience">
-  <p class="section-label reveal">03 // experience</p>
-  <h2 class="section-title reveal">Where I've<br>Worked.</h2>
-  <div class="exp-list">
-
-    <div class="exp-item reveal">
-      <div class="exp-meta">
-        <div class="exp-date">Nov 2025 – May 2026</div>
-        <div class="exp-company">PT Sigma Digital Nusantara<br>Yogyakarta</div>
-      </div>
-      <div class="exp-content">
-        <div class="exp-role">Full-Stack Engineer</div>
-        <div class="exp-context">Shipped 5 internal production tools in 6 months — part of Maganghub Batch 2 national internship program.</div>
-        <ul class="exp-bullets">
-          <li>Built an <strong>Order & Gift Management System</strong> (Laravel + Bootstrap) used across 4 divisions, digitizing a previously manual coordination process end-to-end.</li>
-          <li><strong>Contributed</strong> to a team-built daily ETL pipeline (Bun.js + React) syncing large-scale operational data from BigQuery — personally owned webhook integration and data transformation layer.</li>
-          <li>Automated <strong>multi-courier shipment tracking</strong> (Node.js + TypeScript) via tracking.com API — processing 5,000+ waybills/session in real-time.</li>
-          <li><strong>Solo-built</strong> a TikTok intelligence scraper (Node.js) with Groq AI API for automated sentiment classification — actively used by BI & Data division for campaign decisions.</li>
-          <li>Architected <strong>TikTok Business API integration flow</strong> and delivered initial data-fetch implementation as foundation for internal system roadmap.</li>
-        </ul>
-        <div class="exp-stack">
-          <span class="stack-tag">Laravel</span><span class="stack-tag">React</span><span class="stack-tag">Node.js</span>
-          <span class="stack-tag">TypeScript</span><span class="stack-tag">Bun.js</span><span class="stack-tag">Groq AI</span>
-          <span class="stack-tag">BigQuery</span><span class="stack-tag">MySQL</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="exp-item reveal">
-      <div class="exp-meta">
-        <div class="exp-date">Mar 2024 – Aug 2024</div>
-        <div class="exp-company">CV. Sindang Restu Group<br>Cipanas, Cianjur</div>
-      </div>
-      <div class="exp-content">
-        <div class="exp-role">Full-Stack Developer</div>
-        <div class="exp-context">Sole developer on a full-stack Villa Reservation System — built end-to-end as part of university practicum (Kerja Praktik).</div>
-        <ul class="exp-bullets">
-          <li>Built a <strong>cross-platform mobile app</strong> (Flutter) covering end-to-end villa reservation flow — search, room selection, booking, and payment.</li>
-          <li>Developed a <strong>web-based backend and admin panel</strong> (Laravel + MySQL) to manage reservation data, guests, and transaction reports.</li>
-          <li>Integrated <strong>Midtrans Payment Gateway</strong> to support secure online transactions.</li>
-        </ul>
-        <div class="exp-stack">
-          <span class="stack-tag">Flutter</span><span class="stack-tag">Laravel</span>
-          <span class="stack-tag">MySQL</span><span class="stack-tag">Midtrans</span><span class="stack-tag">Figma</span>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects">
-  <p class="section-label reveal">04 // projects</p>
-  <h2 class="section-title reveal">Featured<br>Projects.</h2>
-  <div class="projects-grid">
-    <div class="project-card reveal">
-      <div class="project-num">01</div>
-      <div class="project-name">TikTok Intelligence Scraper</div>
-      <div class="project-desc">Solo-built a scraper extracting 200+ videos and thousands of comments per video, integrated with Groq AI API for automated keyword-based sentiment classification. Actively used by the BI & Data division for campaign decisions.</div>
-      <div class="project-stack"><span class="stack-tag">Node.js</span><span class="stack-tag">Groq AI API</span><span class="stack-tag">Web Scraping</span></div>
-    </div>
-    <div class="project-card reveal">
-      <div class="project-num">02</div>
-      <div class="project-name">Hospitality & F&B Reservation Platform</div>
-      <div class="project-desc">General-purpose hospitality platform where guests can reserve rooms and order F&B in a single Flutter app — backed by a Laravel REST API and role-based web panel for staff. Architected to deploy across multiple properties.</div>
-      <div class="project-stack"><span class="stack-tag">Flutter</span><span class="stack-tag">Laravel</span><span class="stack-tag">REST API</span><span class="stack-tag">Midtrans</span><span class="stack-tag">Tailwind</span></div>
-    </div>
-    <div class="project-card reveal">
-      <div class="project-num">03</div>
-      <div class="project-name">Community Complaint Mobile App</div>
-      <div class="project-desc">Cross-platform public complaint reporting app with digital submission, real-time status tracking, and push notifications — designed for local government use.</div>
-      <div class="project-stack"><span class="stack-tag">Flutter</span><span class="stack-tag">Laravel</span><span class="stack-tag">MySQL</span></div>
-    </div>
-    <div class="project-card reveal">
-      <div class="project-num">04</div>
-      <div class="project-name">Student Savings & Inventory System</div>
-      <div class="project-desc">Web-based system for managing student savings transactions and inventory stock, with daily transaction logging and report generation — built as a freelance project for a school.</div>
-      <div class="project-stack"><span class="stack-tag">Laravel</span><span class="stack-tag">MySQL</span><span class="stack-tag">PHP</span></div>
-    </div>
-    <div class="project-card reveal">
-      <div class="project-num">05</div>
-      <div class="project-name">Financial Management System</div>
-      <div class="project-desc">Laravel-based financial tracking system with categorized expense/income recording, stock management, and exportable operational financial reports.</div>
-      <div class="project-stack"><span class="stack-tag">Laravel</span><span class="stack-tag">MySQL</span><span class="stack-tag">PHP</span></div>
-    </div>
-    <div class="project-card reveal">
-      <div class="project-num">06</div>
-      <div class="project-name">Counseling Information System</div>
-      <div class="project-desc">Web-based counseling service information system for managing counseling data, case recording, and student reports — built for school use.</div>
-      <div class="project-stack"><span class="stack-tag">Laravel</span><span class="stack-tag">MySQL</span><span class="stack-tag">PHP</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="contact-grid">
-    <div class="contact-cta reveal">
-      <p class="section-label">05 // contact</p>
-      <h2 class="section-title">Let's build<br>something.</h2>
-      <p>Open to Full-Stack, Backend, Frontend, Data, and AI-adjacent roles. Feel free to reach out — always happy to talk tech or explore collaboration.</p>
-      <a href="mailto:kholifprasetyo@gmail.com" class="btn btn-primary">Send Email →</a>
-    </div>
-    <div class="contact-info reveal">
-      <a href="mailto:kholifprasetyo@gmail.com" class="contact-item"><span class="contact-icon">✉</span>kholifprasetyo@gmail.com</a>
-      <a href="https://linkedin.com/in/kholifprasetyo" target="_blank" class="contact-item"><span class="contact-icon">in</span>linkedin.com/in/kholifprasetyo</a>
-      <a href="https://github.com/kholifpra9" target="_blank" class="contact-item"><span class="contact-icon">⌥</span>github.com/kholifpra9</a>
-      <div class="contact-item"><span class="contact-icon">📍</span>Cianjur, Jawa Barat — Indonesia</div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <p>© 2026 <span>Kholif Prasetyo</span>. Built from scratch.</p>
-  <p>Full-Stack Engineer <span>·</span> AI-Integrated Systems</p>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
-<script src="assets/js/main.js"></script>
+  <!-- External JavaScript File -->
+  <script src="assets/js/main.js"></script>
 </body>
 </html>
