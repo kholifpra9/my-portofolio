@@ -4,77 +4,28 @@
     <!-- HEADER SECTION -->
     <div class="border-b border-surface-container-high pb-space-lg mb-space-xl">
       <div class="flex items-center gap-space-xs mb-1">
-        <span class="w-6 h-0.5 bg-primary shrink-0"></span>
-        <span class="font-label-caps text-label-caps uppercase text-primary font-bold">PORTFOLIO DEPLOYMENTS</span>
       </div>
       <h2 class="font-headline-xl text-headline-xl uppercase text-on-surface tracking-tight">FEATURED & LIVE PROJECTS</h2>
       <p class="font-body-md text-body-md text-on-surface-variant mt-1">Swipe or scroll through live applications and production repositories.</p>
     </div>
 
-    <!-- CAROUSEL SLIDER -->
+    <!-- CAROUSEL SLIDER (4 PROJECTS) -->
     <div class="flex gap-space-lg overflow-x-auto snap-x snap-mandatory scroll-smooth pb-space-lg" id="project-slider">
-      <!-- Card 1 -->
+      
+      <!-- Project 01: Gudeg Butin -->
       <div class="snap-start shrink-0 w-full md:w-[480px] lg:w-[420px] border border-surface-container-high bg-surface flex flex-col justify-between hover:border-primary transition-all duration-200">
         <div class="p-space-lg">
           <div class="flex items-center justify-between border-b border-surface-container-high pb-space-sm mb-space-md">
-            <span class="font-label-code text-label-code text-primary uppercase font-bold">PROJECT • 01</span>
             <span class="px-2 py-0.5 bg-primary-fixed text-on-primary-fixed font-label-caps text-label-caps uppercase font-bold">Live Demo</span>
           </div>
-          <div class="w-full h-44 bg-surface-container border border-surface-container-high mb-space-md flex flex-col overflow-hidden">
-            <div class="h-6 bg-surface-container-high px-2 flex items-center gap-1.5 shrink-0 border-b border-outline-variant/30">
-              <span class="w-2 h-2 rounded-full bg-outline-variant"></span><span class="w-2 h-2 rounded-full bg-outline-variant"></span><span class="w-2 h-2 rounded-full bg-outline-variant"></span>
-              <span class="font-label-code text-[9px] text-outline ml-2 truncate">tanyaharga.live/analytics</span>
-            </div>
-            <div class="flex-1 p-space-sm bg-surface flex flex-col justify-between">
-              <div class="flex items-center justify-between">
-                <span class="font-label-code text-[11px] text-primary uppercase font-bold">COMMODITY INDEX</span>
-                <span class="font-label-code text-[11px] text-outline">GROQ LLAMA-3</span>
-              </div>
-              <div class="grid grid-cols-2 gap-2 my-2">
-                <div class="p-2 bg-surface-container text-center"><span class="font-label-caps text-[9px] text-outline uppercase block">Beras Medium</span><span class="font-headline-sm text-[16px] text-on-surface">Rp 14.250</span></div>
-                <div class="p-2 bg-surface-container text-center"><span class="font-label-caps text-[9px] text-outline uppercase block">Cabai Rawit</span><span class="font-headline-sm text-[16px] text-primary">Rp 48.000</span></div>
-              </div>
-              <div class="font-label-code text-[10px] text-on-surface-variant truncate">Status: 24h Realtime Pipeline Synchronized</div>
-            </div>
+          
+          <!-- UI PREVIEW BOX -->
+          <div class="w-full h-44 border border-surface-container-high mb-space-md overflow-hidden bg-surface-container">
+            <img src="assets/images/projects/gudegbutin.png" alt="TanyaHarga Preview" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-300"/>
           </div>
-          <h3 class="font-headline-lg text-headline-lg uppercase text-on-surface tracking-tight mb-2">TanyaHarga — Commodity Price Parser & AI Analytics</h3>
-          <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-md">Automated real-time market scraping & Groq LLM parsing of regional staple food prices with Supabase datastore.</p>
-          <div class="flex flex-wrap gap-1 mb-space-md">
-            <span class="px-2 py-0.5 border border-outline-variant font-label-code text-[10px] uppercase text-on-surface">Next.js 14</span>
-            <span class="px-2 py-0.5 border border-primary font-label-code text-[10px] uppercase text-primary font-semibold">Groq AI API</span>
-            <span class="px-2 py-0.5 border border-outline-variant font-label-code text-[10px] uppercase text-on-surface">Supabase</span>
-            <span class="px-2 py-0.5 border border-outline-variant font-label-code text-[10px] uppercase text-on-surface">Tailwind</span>
-          </div>
-        </div>
-        <div class="grid grid-cols-2 border-t border-surface-container-high">
-          <a class="py-space-sm text-center font-label-caps text-label-caps uppercase text-on-surface hover:bg-surface-container-high transition-colors border-r border-surface-container-high" href="https://github.com/kholifpra9" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-          <a class="py-space-sm text-center font-label-caps text-label-caps uppercase text-primary hover:bg-primary hover:text-on-primary transition-colors font-bold" href="https://tanyaharga.com" target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
-        </div>
-      </div>
 
-      <!-- Card 2 -->
-      <div class="snap-start shrink-0 w-full md:w-[480px] lg:w-[420px] border border-surface-container-high bg-surface flex flex-col justify-between hover:border-primary transition-all duration-200">
-        <div class="p-space-lg">
-          <div class="flex items-center justify-between border-b border-surface-container-high pb-space-sm mb-space-md">
-            <span class="font-label-code text-label-code text-primary uppercase font-bold">PROJECT • 02</span>
-            <span class="px-2 py-0.5 bg-surface-container-high text-on-surface font-label-caps text-label-caps uppercase font-bold">Vercel Deployed</span>
-          </div>
-          <div class="w-full h-44 bg-surface-container border border-surface-container-high mb-space-md flex flex-col overflow-hidden">
-            <div class="h-6 bg-surface-container-high px-2 flex items-center gap-1.5 shrink-0 border-b border-outline-variant/30">
-              <span class="w-2 h-2 rounded-full bg-outline-variant"></span><span class="w-2 h-2 rounded-full bg-outline-variant"></span><span class="w-2 h-2 rounded-full bg-outline-variant"></span>
-              <span class="font-label-code text-[9px] text-outline ml-2 truncate">gudegbutin.vercel.app</span>
-            </div>
-            <div class="flex-1 p-space-sm bg-surface flex flex-col justify-between">
-              <div class="flex items-center justify-between">
-                <span class="font-headline-sm text-[16px] text-on-surface uppercase">GUDEG BU TIN</span>
-                <span class="font-label-code text-[10px] text-primary">SPEED: 99/100</span>
-              </div>
-              <div class="p-2 border border-surface-container-high bg-surface-container-low text-xs">Culinary Heritage E-Catalog with instant WhatsApp ordering webhook & responsive item viewer.</div>
-              <div class="font-label-code text-[10px] text-outline">High-Conversion Web Application</div>
-            </div>
-          </div>
           <h3 class="font-headline-lg text-headline-lg uppercase text-on-surface tracking-tight mb-2">Gudeg Bu Tin Digital Experience</h3>
-          <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-md">High-conversion digital storefront and catalog web application engineered for optimized mobile UX and rapid page loads.</p>
+          <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-md">Digital storefront and culinary e-catalog engineered for optimized mobile UX and rapid page loads.</p>
           <div class="flex flex-wrap gap-1 mb-space-md">
             <span class="px-2 py-0.5 border border-outline-variant font-label-code text-[10px] uppercase text-on-surface">Next.js</span>
             <span class="px-2 py-0.5 border border-outline-variant font-label-code text-[10px] uppercase text-on-surface">React</span>
@@ -82,119 +33,90 @@
             <span class="px-2 py-0.5 border border-outline-variant font-label-code text-[10px] uppercase text-on-surface">Vercel</span>
           </div>
         </div>
-        <div class="grid grid-cols-2 border-t border-surface-container-high">
-          <a class="py-space-sm text-center font-label-caps text-label-caps uppercase text-on-surface hover:bg-surface-container-high transition-colors border-r border-surface-container-high" href="https://github.com/kholifpra9" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        <div class="grid grid-cols-1 border-t border-surface-container-high">
           <a class="py-space-sm text-center font-label-caps text-label-caps uppercase text-primary hover:bg-primary hover:text-on-primary transition-colors font-bold" href="https://gudegbutin.vercel.app" target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
         </div>
       </div>
 
-      <!-- Card 3 -->
+      <!-- Project 02: ModuBill -->
       <div class="snap-start shrink-0 w-full md:w-[480px] lg:w-[420px] border border-surface-container-high bg-surface flex flex-col justify-between hover:border-primary transition-all duration-200">
         <div class="p-space-lg">
           <div class="flex items-center justify-between border-b border-surface-container-high pb-space-sm mb-space-md">
-            <span class="font-label-code text-label-code text-primary uppercase font-bold">PROJECT • 03</span>
-            <span class="px-2 py-0.5 bg-secondary-container text-on-surface font-label-caps text-label-caps uppercase font-bold">Mobile + Web</span>
+            <span class="px-2 py-0.5 bg-primary-fixed text-on-primary-fixed font-label-caps text-label-caps uppercase font-bold">Live Demo</span>
           </div>
-          <div class="w-full h-44 bg-surface-container border border-surface-container-high mb-space-md flex flex-col overflow-hidden">
-            <div class="h-6 bg-surface-container-high px-2 flex items-center gap-1.5 shrink-0 border-b border-outline-variant/30">
-              <span class="w-2 h-2 rounded-full bg-outline-variant"></span><span class="w-2 h-2 rounded-full bg-outline-variant"></span><span class="w-2 h-2 rounded-full bg-outline-variant"></span>
-              <span class="font-label-code text-[9px] text-outline ml-2 truncate">villa-sindang.app/checkout</span>
-            </div>
-            <div class="flex-1 p-space-sm bg-surface flex flex-col justify-between">
-              <div class="flex items-center justify-between">
-                <span class="font-label-caps text-[10px] text-primary uppercase font-bold">RESERVATION ENGINE</span>
-                <span class="font-label-code text-[10px] text-on-surface">MIDTRANS READY</span>
-              </div>
-              <div class="p-2 border border-surface-container-high bg-surface-container-low text-xs">Real-time room occupancy grid • Instant WhatsApp dispatch • Dynamic pricing engine.</div>
-              <div class="font-label-code text-[10px] text-outline">Flutter 3.x Native + Laravel API</div>
-            </div>
+          
+          <!-- UI PREVIEW BOX -->
+          <div class="w-full h-44 border border-surface-container-high mb-space-md overflow-hidden bg-surface-container">
+            <img src="assets/images/projects/modubill.png" alt="ModuBill Preview" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-300"/>
           </div>
-          <h3 class="font-headline-lg text-headline-lg uppercase text-on-surface tracking-tight mb-2">Hospitality & Villa Reservation Platform</h3>
-          <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-md">End-to-end guest booking engine with real-time room availability matrix and automated payment reconciliation.</p>
+
+          <h3 class="font-headline-lg text-headline-lg uppercase text-on-surface tracking-tight mb-2">ModuBill — Modular Invoicing Platform</h3>
+          <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-md">Streamlined invoice management app designed for rapid PDF generation, itemization, and payment tracking.</p>
           <div class="flex flex-wrap gap-1 mb-space-md">
-            <span class="px-2 py-0.5 border border-outline-variant font-label-code text-[10px] uppercase text-on-surface">Flutter 3</span>
-            <span class="px-2 py-0.5 border border-outline-variant font-label-code text-[10px] uppercase text-on-surface">Laravel 11</span>
-            <span class="px-2 py-0.5 border border-primary font-label-code text-[10px] uppercase text-primary font-semibold">Midtrans</span>
-            <span class="px-2 py-0.5 border border-outline-variant font-label-code text-[10px] uppercase text-on-surface">MySQL</span>
+            <span class="px-2 py-0.5 border border-outline-variant font-label-code text-[10px] uppercase text-on-surface">Next.js</span>
+            <span class="px-2 py-0.5 border border-outline-variant font-label-code text-[10px] uppercase text-on-surface">TypeScript</span>
+            <span class="px-2 py-0.5 border border-outline-variant font-label-code text-[10px] uppercase text-on-surface">Tailwind</span>
+            <span class="px-2 py-0.5 border border-outline-variant font-label-code text-[10px] uppercase text-on-surface">PDF Kit</span>
           </div>
         </div>
-        <div class="grid grid-cols-2 border-t border-surface-container-high">
-          <a class="py-space-sm text-center font-label-caps text-label-caps uppercase text-on-surface hover:bg-surface-container-high transition-colors border-r border-surface-container-high" href="https://github.com/kholifpra9" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-          <a class="py-space-sm text-center font-label-caps text-label-caps uppercase text-primary hover:bg-primary hover:text-on-primary transition-colors font-bold" href="https://github.com/kholifpra9" target="_blank" rel="noopener noreferrer">View Repo ↗</a>
+        <div class="grid grid-cols-1 border-t border-surface-container-high">
+          <a class="py-space-sm text-center font-label-caps text-label-caps uppercase text-primary hover:bg-primary hover:text-on-primary transition-colors font-bold" href="https://modubill.vercel.app" target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
         </div>
       </div>
 
-      <!-- Card 4 -->
+      <!-- Project 03: TanyaHarga -->
       <div class="snap-start shrink-0 w-full md:w-[480px] lg:w-[420px] border border-surface-container-high bg-surface flex flex-col justify-between hover:border-primary transition-all duration-200">
         <div class="p-space-lg">
           <div class="flex items-center justify-between border-b border-surface-container-high pb-space-sm mb-space-md">
-            <span class="font-label-code text-label-code text-primary uppercase font-bold">PROJECT • 04</span>
-            <span class="px-2 py-0.5 bg-primary-fixed text-on-primary-fixed font-label-caps text-label-caps uppercase font-bold">Flutter App</span>
+            <span class="px-2 py-0.5 bg-primary-fixed text-on-primary-fixed font-label-caps text-label-caps uppercase font-bold">Live Demo</span>
           </div>
-          <div class="w-full h-44 bg-surface-container border border-surface-container-high mb-space-md flex flex-col overflow-hidden">
-            <div class="h-6 bg-surface-container-high px-2 flex items-center gap-1.5 shrink-0 border-b border-outline-variant/30">
-              <span class="w-2 h-2 rounded-full bg-outline-variant"></span><span class="w-2 h-2 rounded-full bg-outline-variant"></span><span class="w-2 h-2 rounded-full bg-outline-variant"></span>
-              <span class="font-label-code text-[9px] text-outline ml-2 truncate">mobile-client: complaint-sys</span>
-            </div>
-            <div class="flex-1 p-space-sm bg-surface flex flex-col justify-between">
-              <div class="flex items-center justify-between">
-                <span class="font-label-caps text-[10px] text-primary uppercase font-bold">CIVIC TECH REPORTING</span>
-                <span class="font-label-code text-[10px] text-outline">GEO-TAGGED</span>
-              </div>
-              <div class="p-2 border border-surface-container-high bg-surface-container-low text-xs">Incident pipeline with camera compression, GPS coordinate mapping, and push alerts.</div>
-              <div class="font-label-code text-[10px] text-outline">Firebase Cloud Messaging Integrated</div>
-            </div>
+          
+          <!-- UI PREVIEW BOX (Ganti dengan <img src="assets/images/tanyaharga.png"> jika ada screenshot) -->
+          <div class="w-full h-44 border border-surface-container-high mb-space-md overflow-hidden bg-surface-container">
+            <img src="assets/images/projects/tanyaharga.png" alt="TanyaHarga Preview" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-300"/>
           </div>
-          <h3 class="font-headline-lg text-headline-lg uppercase text-on-surface tracking-tight mb-2">Community Complaint & Public Service App</h3>
-          <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-md">Citizen reporting portal with GPS geo-location tagging, media attachment pipeline, and FCM push notifications.</p>
+
+          <h3 class="font-headline-lg text-headline-lg uppercase text-on-surface tracking-tight mb-2">TanyaHarga — Commodity Price Parser</h3>
+          <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-md">Automated market scraping & Groq AI LLM parser for tracking staple food prices with Supabase datastore.</p>
           <div class="flex flex-wrap gap-1 mb-space-md">
-            <span class="px-2 py-0.5 border border-outline-variant font-label-code text-[10px] uppercase text-on-surface">Flutter</span>
-            <span class="px-2 py-0.5 border border-outline-variant font-label-code text-[10px] uppercase text-on-surface">Laravel REST</span>
-            <span class="px-2 py-0.5 border border-outline-variant font-label-code text-[10px] uppercase text-on-surface">MySQL</span>
-            <span class="px-2 py-0.5 border border-outline-variant font-label-code text-[10px] uppercase text-on-surface">Firebase</span>
+            <span class="px-2 py-0.5 border border-outline-variant font-label-code text-[10px] uppercase text-on-surface">Next.js</span>
+            <span class="px-2 py-0.5 border border-primary font-label-code text-[10px] uppercase text-primary font-semibold">Groq AI API</span>
+            <span class="px-2 py-0.5 border border-outline-variant font-label-code text-[10px] uppercase text-on-surface">Supabase</span>
+            <span class="px-2 py-0.5 border border-outline-variant font-label-code text-[10px] uppercase text-on-surface">Zod</span>
           </div>
         </div>
-        <div class="grid grid-cols-2 border-t border-surface-container-high">
-          <a class="py-space-sm text-center font-label-caps text-label-caps uppercase text-on-surface hover:bg-surface-container-high transition-colors border-r border-surface-container-high" href="https://github.com/kholifpra9" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-          <a class="py-space-sm text-center font-label-caps text-label-caps uppercase text-primary hover:bg-primary hover:text-on-primary transition-colors font-bold" href="https://github.com/kholifpra9" target="_blank" rel="noopener noreferrer">View Repo ↗</a>
+        <div class="grid grid-cols-1 border-t border-surface-container-high">
+          <a class="py-space-sm text-center font-label-caps text-label-caps uppercase text-primary hover:bg-primary hover:text-on-primary transition-colors font-bold" href="https://tanyaharga.vercel.app" target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
         </div>
       </div>
 
-      <!-- Card 5 -->
+      <!-- Project 04: KilasGizi -->
       <div class="snap-start shrink-0 w-full md:w-[480px] lg:w-[420px] border border-surface-container-high bg-surface flex flex-col justify-between hover:border-primary transition-all duration-200">
         <div class="p-space-lg">
           <div class="flex items-center justify-between border-b border-surface-container-high pb-space-sm mb-space-md">
-            <span class="font-label-code text-label-code text-primary uppercase font-bold">PROJECT • 05</span>
-            <span class="px-2 py-0.5 bg-surface-container-high text-on-surface font-label-caps text-label-caps uppercase font-bold">Enterprise ERP</span>
+            <span class="px-2 py-0.5 bg-primary-fixed text-on-primary-fixed font-label-caps text-label-caps uppercase font-bold">Live Demo</span>
           </div>
-          <div class="w-full h-44 bg-surface-container border border-surface-container-high mb-space-md flex flex-col overflow-hidden">
-            <div class="h-6 bg-surface-container-high px-2 flex items-center gap-1.5 shrink-0 border-b border-outline-variant/30">
-              <span class="w-2 h-2 rounded-full bg-outline-variant"></span><span class="w-2 h-2 rounded-full bg-outline-variant"></span><span class="w-2 h-2 rounded-full bg-outline-variant"></span>
-              <span class="font-label-code text-[9px] text-outline ml-2 truncate">erp-inventory.internal/ledger</span>
-            </div>
-            <div class="flex-1 p-space-sm bg-surface flex flex-col justify-between">
-              <div class="flex items-center justify-between">
-                <span class="font-label-caps text-[10px] text-primary uppercase font-bold">MULTI-WAREHOUSE ERP</span>
-                <span class="font-label-code text-[10px] text-outline">REDIS QUEUED</span>
-              </div>
-              <div class="p-2 border border-surface-container-high bg-surface-container-low text-xs">Automated stock depletion threshold alerts • Batch PDF invoicing engine • Role ACLs.</div>
-              <div class="font-label-code text-[10px] text-outline">High-Availability Backend Architecture</div>
-            </div>
+          
+          <!-- UI PREVIEW BOX -->
+          <div class="w-full h-44 border border-surface-container-high mb-space-md overflow-hidden bg-surface-container">
+            <img src="assets/images/projects/kilasgizi.png" alt="KilasGizi Preview" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-300"/>
           </div>
-          <h3 class="font-headline-lg text-headline-lg uppercase text-on-surface tracking-tight mb-2">Financial & Inventory Management System</h3>
-          <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-md">Internal ledger, automated stock alerting, multi-warehouse balance reports, and PDF invoice generation.</p>
+
+          <h3 class="font-headline-lg text-headline-lg uppercase text-on-surface tracking-tight mb-2">KilasGizi — Nutrition Analyzer</h3>
+          <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-md">Smart health web application for instant nutrition analysis, calorie estimation, and macro breakdowns.</p>
           <div class="flex flex-wrap gap-1 mb-space-md">
-            <span class="px-2 py-0.5 border border-outline-variant font-label-code text-[10px] uppercase text-on-surface">Laravel</span>
-            <span class="px-2 py-0.5 border border-outline-variant font-label-code text-[10px] uppercase text-on-surface">MySQL</span>
-            <span class="px-2 py-0.5 border border-outline-variant font-label-code text-[10px] uppercase text-on-surface">Bootstrap 5</span>
-            <span class="px-2 py-0.5 border border-outline-variant font-label-code text-[10px] uppercase text-on-surface">Redis</span>
+            <span class="px-2 py-0.5 border border-outline-variant font-label-code text-[10px] uppercase text-on-surface">Next.js</span>
+            <span class="px-2 py-0.5 border border-outline-variant font-label-code text-[10px] uppercase text-on-surface">React</span>
+            <span class="px-2 py-0.5 border border-outline-variant font-label-code text-[10px] uppercase text-on-surface">Tailwind CSS</span>
+            <span class="px-2 py-0.5 border border-outline-variant font-label-code text-[10px] uppercase text-on-surface">Vercel</span>
           </div>
         </div>
-        <div class="grid grid-cols-2 border-t border-surface-container-high">
-          <a class="py-space-sm text-center font-label-caps text-label-caps uppercase text-on-surface hover:bg-surface-container-high transition-colors border-r border-surface-container-high" href="https://github.com/kholifpra9" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-          <a class="py-space-sm text-center font-label-caps text-label-caps uppercase text-primary hover:bg-primary hover:text-on-primary transition-colors font-bold" href="https://github.com/kholifpra9" target="_blank" rel="noopener noreferrer">View Repo ↗</a>
+        <div class="grid grid-cols-1 border-t border-surface-container-high">
+          <a class="py-space-sm text-center font-label-caps text-label-caps uppercase text-primary hover:bg-primary hover:text-on-primary transition-colors font-bold" href="https://kilasgizi.vercel.app" target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
         </div>
       </div>
+      
+
     </div>
 
     <!-- BOTTOM CONTROLS (KOMPAK & BERDAMPINGAN DI TENGAH) -->
@@ -205,11 +127,10 @@
         <span class="material-symbols-outlined text-[20px]">arrow_back</span>
       </button>
 
-      <!-- Dots Indicator -->
+      <!-- Dots Indicator (4 Projects) -->
       <div class="flex items-center gap-2">
         <button aria-label="Go to view 1" class="proj-dot h-2 w-8 bg-primary rounded-full transition-all duration-300" type="button"></button>
         <button aria-label="Go to view 2" class="proj-dot h-2 w-2 bg-outline-variant rounded-full transition-all duration-300" type="button"></button>
-        <button aria-label="Go to view 3" class="proj-dot h-2 w-2 bg-outline-variant rounded-full transition-all duration-300" type="button"></button>
       </div>
 
       <!-- Button Next -->
