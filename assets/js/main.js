@@ -1,4 +1,28 @@
 document.addEventListener('DOMContentLoaded', async () => {
+  // 0. Smooth Scroll Engine (Lenis)
+  const lenis = new Lenis({
+    duration: 1.2, // Durasi scroll (makin besar makin mulus & tenang)
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Smooth cubic easing
+    orientation: 'vertical',
+    gestureOrientation: 'vertical',
+    smoothWheel: true,
+    wheelMultiplier: 0.9,
+    touchMultiplier: 1.5,
+  });
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+
+  requestAnimationFrame(raf);
+
+  // Hubungkan Lenis dengan pemicu Scroll Observer yang sudah ada
+  lenis.on('scroll', () => {
+    // Memastikan active nav indicator & scroll progress tetap akurat
+    window.dispatchEvent(new Event('scroll'));
+  });
+  
   // 1. Dynamic Section HTML Loader
   const includes = document.querySelectorAll('[data-include]');
   await Promise.all(
@@ -119,7 +143,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   window.addEventListener('scroll', updateActiveLinks, { passive: true });
   updateActiveLinks();
 
-  // 5. Project Carousel & Slider
+  // 5. Project Carousel & Slider (Fix Responsive Dots Mismatch)
   (function initProjectSlider() {
     const slider = document.getElementById('project-slider');
     const prevBtn = document.getElementById('proj-prev');
@@ -128,39 +152,60 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (!slider) return;
 
+    // Menghitung lebar 1 kartu + gap antar kartu
+    function getStepWidth() {
+      if (!slider.firstElementChild) return 420;
+      const card = slider.firstElementChild;
+      const style = window.getComputedStyle(slider);
+      const gap = parseFloat(style.gap) || 24;
+      return card.offsetWidth + gap;
+    }
+
     function updateDots() {
-      const cardWidth = slider.firstElementChild ? slider.firstElementChild.offsetWidth + 24 : 444;
-      const activeIndex = Math.min(Math.round(slider.scrollLeft / cardWidth), dots.length - 1);
+      const stepWidth = getStepWidth();
+      const maxScroll = slider.scrollWidth - slider.clientWidth;
+      
+      // Jika sudah hampir mentok di paling kanan, aktifkan dot terakhir
+      if (maxScroll > 0 && Math.ceil(slider.scrollLeft) >= maxScroll - 10) {
+        dots.forEach((dot, i) => {
+          const isLast = i === dots.length - 1;
+          dot.className = isLast
+            ? 'proj-dot h-2 w-8 bg-primary rounded-full transition-all duration-300 cursor-pointer'
+            : 'proj-dot h-2 w-2 bg-outline-variant hover:bg-primary/50 rounded-full transition-all duration-300 cursor-pointer';
+        });
+        return;
+      }
+
+      // Hitung indeks aktif berdasarkan posisi scroll
+      const activeIndex = Math.min(Math.round(slider.scrollLeft / stepWidth), dots.length - 1);
 
       dots.forEach((dot, i) => {
         dot.className = i === activeIndex
-          ? 'proj-dot h-2 w-8 bg-primary rounded-full transition-all duration-300'
-          : 'proj-dot h-2 w-2 bg-outline-variant rounded-full transition-all duration-300';
+          ? 'proj-dot h-2 w-8 bg-primary rounded-full transition-all duration-300 cursor-pointer'
+          : 'proj-dot h-2 w-2 bg-outline-variant hover:bg-primary/50 rounded-full transition-all duration-300 cursor-pointer';
       });
     }
 
     if (prevBtn) {
       prevBtn.addEventListener('click', () => {
-        const cw = slider.firstElementChild ? slider.firstElementChild.offsetWidth + 24 : 444;
-        slider.scrollBy({ left: -cw, behavior: 'smooth' });
+        slider.scrollBy({ left: -getStepWidth(), behavior: 'smooth' });
       });
     }
 
     if (nextBtn) {
       nextBtn.addEventListener('click', () => {
-        const cw = slider.firstElementChild ? slider.firstElementChild.offsetWidth + 24 : 444;
-        slider.scrollBy({ left: cw, behavior: 'smooth' });
+        slider.scrollBy({ left: getStepWidth(), behavior: 'smooth' });
       });
     }
 
     dots.forEach((dot, i) => {
       dot.addEventListener('click', () => {
-        const cw = slider.firstElementChild ? slider.firstElementChild.offsetWidth + 24 : 444;
-        slider.scrollTo({ left: i * cw, behavior: 'smooth' });
+        slider.scrollTo({ left: i * getStepWidth(), behavior: 'smooth' });
       });
     });
 
     slider.addEventListener('scroll', () => requestAnimationFrame(updateDots), { passive: true });
+    window.addEventListener('resize', updateDots, { passive: true });
   })();
 
   // Custom Smooth Cursor Follower (Fixed Jump Bug)
